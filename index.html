@@ -3,94 +3,131 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>บอร์ดประชาสัมพันธ์กิจกรรม</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<title>บอร์ดประชาสัมพันธ์ โรงเรียนพระมารดานิจจานุเคราะห์</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun',sans-serif;background:#F4F6F4;color:#1a1a1a;min-height:100vh}
-
-/* Top bar */
-.topbar{background:#0F6E56;color:#fff;padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-.topbar-title{font-size:17px;font-weight:600;letter-spacing:0.01em}
-.topbar-sub{font-size:12px;opacity:0.8;margin-top:1px}
-.btn-add{display:flex;align-items:center;gap:6px;padding:8px 18px;background:#fff;color:#0F6E56;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.15s}
+body{font-family:'Sarabun',sans-serif;background:#F2F4F3;color:#1a1a1a;min-height:100vh}
+.topbar{background:#0F6E56;color:#fff;padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-title{font-size:17px;font-weight:600}
+.topbar-sub{font-size:11px;opacity:0.8;margin-top:1px}
+.btn-add{display:flex;align-items:center;gap:6px;padding:8px 16px;background:#fff;color:#0F6E56;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.15s;white-space:nowrap}
 .btn-add:hover{background:#E1F5EE}
-
-/* Layout */
-.container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem}
+.nav-tabs{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem;display:flex;gap:0;position:sticky;top:60px;z-index:40;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.nav-tab{padding:14px 18px;font-size:14px;font-weight:500;cursor:pointer;color:#666;border-bottom:3px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Sarabun',sans-serif;display:flex;align-items:center;gap:7px;transition:all 0.15s;white-space:nowrap}
+.nav-tab.active{color:#0F6E56;border-bottom-color:#0F6E56}
+.nav-tab:hover{color:#1D9E75}
+.page{display:none;padding:1.5rem}
+.page.active{display:block}
+.container{max-width:1100px;margin:0 auto}
 
 /* Stats */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.5rem}
 .stat-card{background:#fff;border-radius:10px;padding:14px 16px;text-align:center;border:0.5px solid #e0e0e0}
-.stat-num{font-size:26px;font-weight:600;color:#0F6E56}
-.stat-label{font-size:12px;color:#666;margin-top:2px}
-
-/* Tabs */
-.tabs{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:1.5px solid #e0e0e0}
-.tab{padding:10px 20px;font-size:14px;cursor:pointer;color:#666;border-bottom:2.5px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Sarabun',sans-serif;font-weight:500;display:flex;align-items:center;gap:6px;transition:all 0.15s;margin-bottom:-1.5px}
-.tab.active{color:#0F6E56;border-bottom-color:#0F6E56}
-.tab:hover{color:#1D9E75}
-.view{display:none}
-.view.active{display:block}
+.stat-num{font-size:26px;font-weight:700;color:#0F6E56}
+.stat-label{font-size:11px;color:#777;margin-top:3px}
 
 /* Calendar */
-.month-nav{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
-.month-nav button{background:#fff;border:0.5px solid #ccc;border-radius:8px;padding:7px 12px;cursor:pointer;color:#333;font-size:14px;font-family:'Sarabun',sans-serif;transition:background 0.1s}
+.cal-toolbar{display:flex;align-items:center;gap:12px;margin-bottom:1rem;flex-wrap:wrap}
+.month-nav button{background:#fff;border:0.5px solid #ccc;border-radius:8px;padding:7px 12px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:14px;color:#333;transition:background 0.1s}
 .month-nav button:hover{background:#f0f0f0}
-.month-label{font-size:17px;font-weight:600;color:#1a1a1a}
+.month-label{font-size:18px;font-weight:700;color:#1a1a1a}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.cal-header-cell{text-align:center;font-size:12px;font-weight:600;color:#666;padding:6px 0}
-.cal-day{min-height:76px;border-radius:8px;border:0.5px solid #e5e5e5;padding:7px;background:#fff;cursor:pointer;transition:border-color 0.15s}
+.cal-hcell{text-align:center;font-size:12px;font-weight:700;color:#666;padding:6px 0}
+.cal-day{min-height:80px;border-radius:8px;border:0.5px solid #e5e5e5;padding:7px;background:#fff;cursor:pointer;transition:all 0.15s}
 .cal-day:hover{border-color:#0F6E56;background:#FAFFFE}
-.cal-day.other-month{background:#f8f8f8;opacity:0.55}
-.cal-day.today{border-color:#0F6E56;border-width:1.5px}
-.cal-day .day-num{font-size:12px;font-weight:600;color:#333;margin-bottom:4px}
+.cal-day.other-month{background:#f8f8f8;opacity:0.5}
+.cal-day.today{border-color:#0F6E56;border-width:2px}
+.day-num{font-size:12px;font-weight:700;color:#333;margin-bottom:4px}
 .cal-day.today .day-num{color:#0F6E56}
-.event-dot{display:flex;align-items:center;gap:4px;margin-bottom:2px}
+.ev-dot{display:flex;align-items:center;gap:4px;margin-bottom:2px}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.event-dot span{font-size:10px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.ev-dot span{font-size:10px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100px}
 
-/* List */
-.filter-bar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
-.filter-chip{font-size:12px;padding:5px 14px;border-radius:99px;border:0.5px solid #ccc;background:#fff;cursor:pointer;color:#555;font-family:'Sarabun',sans-serif;font-weight:500;transition:all 0.15s}
-.filter-chip.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
-.filter-chip:hover:not(.active){background:#f0f0f0}
-.list-view{display:flex;flex-direction:column;gap:10px}
-.event-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;transition:box-shadow 0.15s}
-.event-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08)}
-.event-left{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:52px;background:#E1F5EE;border-radius:8px;padding:10px 6px;text-align:center}
-.event-day{font-size:22px;font-weight:700;color:#0F6E56;line-height:1}
-.event-month{font-size:10px;color:#1D9E75;margin-top:3px;font-weight:500}
-.event-body{flex:1;min-width:0}
-.event-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px}
+/* Event list */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+.fchip{font-size:12px;padding:5px 14px;border-radius:99px;border:0.5px solid #ccc;background:#fff;cursor:pointer;color:#555;font-family:'Sarabun',sans-serif;font-weight:500;transition:all 0.15s}
+.fchip.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.fchip:hover:not(.active){background:#f0f0f0}
+.ev-list{display:flex;flex-direction:column;gap:10px}
+.ev-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;transition:box-shadow 0.15s}
+.ev-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+.ev-left{display:flex;flex-direction:column;align-items:center;min-width:52px;background:#E1F5EE;border-radius:8px;padding:10px 6px;text-align:center;flex-shrink:0}
+.ev-day{font-size:22px;font-weight:700;color:#0F6E56;line-height:1}
+.ev-month-lbl{font-size:10px;color:#1D9E75;margin-top:3px;font-weight:500}
+.ev-body{flex:1;min-width:0}
+.ev-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px}
 .dept-badge{font-size:11px;padding:3px 10px;border-radius:8px;font-weight:500}
-.event-desc{font-size:13px;color:#666;margin-top:5px;line-height:1.5}
+.ev-desc{font-size:13px;color:#666;margin-top:5px;line-height:1.5}
 .file-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#185FA5;background:#E6F1FB;padding:4px 10px;border-radius:8px;text-decoration:none;margin-top:6px;font-weight:500;transition:background 0.1s}
 .file-chip:hover{background:#cde2f7}
 .btn-actions{display:flex;gap:4px;flex-shrink:0}
-.btn-icon{background:none;border:none;cursor:pointer;padding:7px;border-radius:8px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;color:#999}
-.btn-icon:hover.del{color:#c0392b;background:#fdecea}
-.btn-icon:hover.edit{color:#185FA5;background:#E6F1FB}
-.empty{text-align:center;padding:4rem 1rem;color:#999;font-size:14px}
+.btn-ic{background:none;border:none;cursor:pointer;padding:7px;border-radius:8px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;color:#999}
+.btn-ic.edit:hover{color:#185FA5;background:#E6F1FB}
+.btn-ic.del:hover{color:#c0392b;background:#fdecea}
+.empty-state{text-align:center;padding:4rem 1rem;color:#aaa;font-size:14px}
 
-/* Modal */
-.modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}
+/* ===== TEACHER DIRECTORY ===== */
+.teacher-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
+.search-box{display:flex;align-items:center;gap:8px;background:#fff;border:0.5px solid #ccc;border-radius:10px;padding:8px 14px;flex:1;min-width:220px;max-width:400px;transition:border-color 0.15s}
+.search-box:focus-within{border-color:#0F6E56;box-shadow:0 0 0 3px rgba(15,110,86,0.1)}
+.search-box i{color:#999;font-size:18px;flex-shrink:0}
+.search-box input{border:none;outline:none;font-family:'Sarabun',sans-serif;font-size:14px;background:none;width:100%;color:#1a1a1a}
+.teacher-type-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tt-tab{padding:7px 14px;font-size:13px;font-weight:500;border-radius:8px;border:0.5px solid #ccc;background:#fff;cursor:pointer;color:#666;font-family:'Sarabun',sans-serif;transition:all 0.15s}
+.tt-tab.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.tt-tab:hover:not(.active){background:#f0f0f0}
+.teacher-count{font-size:13px;color:#888;white-space:nowrap;padding-top:2px}
+.teacher-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.t-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:16px;transition:box-shadow 0.15s;cursor:pointer}
+.t-card:hover{box-shadow:0 3px 16px rgba(0,0,0,0.1);border-color:#b2d8ce}
+.t-card-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.t-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1D9E75,#0F6E56);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0;overflow:hidden}
+.t-avatar.retired{background:linear-gradient(135deg,#BA7517,#EF9F27)}
+.t-avatar.foreign{background:linear-gradient(135deg,#185FA5,#378ADD)}
+.t-name{font-size:15px;font-weight:600;color:#1a1a1a;line-height:1.3}
+.t-code{font-size:11px;color:#888;margin-top:2px}
+.t-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:99px;margin-top:3px;font-weight:500}
+.t-badge.retired{background:#FEF3C7;color:#92400E}
+.t-badge.foreign{background:#DBEAFE;color:#1E40AF}
+.t-info{font-size:12px;color:#555;display:flex;flex-direction:column;gap:4px}
+.t-info-row{display:flex;align-items:flex-start;gap:6px}
+.t-info-row i{font-size:14px;color:#0F6E56;flex-shrink:0;margin-top:1px}
+
+/* Teacher Modal */
+.tmodal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);display:flex;align-items:flex-start;justify-content:center;z-index:200;padding:1rem;overflow-y:auto}
+.tmodal{background:#fff;border-radius:16px;width:100%;max-width:520px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,0.25);position:relative;margin:auto}
+.tmodal-close{position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;font-size:20px;color:#aaa;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all 0.15s}
+.tmodal-close:hover{background:#f0f0f0;color:#333}
+.tmodal-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1D9E75,#0F6E56);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#fff;margin:0 auto 1rem;overflow:hidden}
+.tmodal-avatar.retired{background:linear-gradient(135deg,#BA7517,#EF9F27)}
+.tmodal-avatar.foreign{background:linear-gradient(135deg,#185FA5,#378ADD)}
+.tmodal-name{text-align:center;font-size:19px;font-weight:700;margin-bottom:4px}
+.tmodal-code{text-align:center;font-size:13px;color:#888;margin-bottom:1rem}
+.tmodal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tmodal-field{background:#F8FAF9;border-radius:8px;padding:10px 12px}
+.tmodal-field label{display:block;font-size:10px;color:#777;margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.tmodal-field p{font-size:13px;color:#1a1a1a;font-weight:500}
+.tmodal-field.full{grid-column:1/-1}
+
+/* Add/Edit Event Modal */
+.modal-wrap{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}
 .modal{background:#fff;border-radius:14px;width:100%;max-width:500px;padding:1.75rem;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
-.modal h3{font-size:17px;font-weight:600;margin-bottom:1.25rem;color:#1a1a1a}
+.modal h3{font-size:17px;font-weight:600;margin-bottom:1.25rem}
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:13px;color:#555;margin-bottom:5px;font-weight:500}
-.field input,.field select,.field textarea{width:100%;padding:9px 12px;border:0.5px solid #ccc;border-radius:8px;font-family:'Sarabun',sans-serif;font-size:14px;color:#1a1a1a;outline:none;transition:border-color 0.15s;background:#fff}
+.field input,.field select,.field textarea{width:100%;padding:9px 12px;border:0.5px solid #ccc;border-radius:8px;font-family:'Sarabun',sans-serif;font-size:14px;outline:none;background:#fff;color:#1a1a1a;transition:border-color 0.15s}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:#0F6E56;box-shadow:0 0 0 3px rgba(15,110,86,0.1)}
 .field textarea{height:76px;resize:vertical}
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.gdrive-wrap{display:flex;gap:8px;align-items:center}
-.gdrive-icon{font-size:22px;flex-shrink:0}
-.file-preview-box{display:flex;align-items:center;gap:8px;background:#f5f5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#555;margin-top:6px}
-.dept-colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.dept-swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.1s}
-.dept-swatch.selected{transform:scale(1.3);border-color:#1a1a1a}
+.drive-wrap{display:flex;gap:8px;align-items:center}
+.drive-icon{font-size:22px;flex-shrink:0}
+.drive-preview{display:flex;align-items:center;gap:8px;background:#f5f5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#555;margin-top:6px}
+.color-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.cswatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.1s}
+.cswatch.selected{transform:scale(1.3);border-color:#1a1a1a}
 .modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:1.25rem}
 .btn-cancel{background:#f0f0f0;border:none;border-radius:8px;padding:9px 18px;font-size:14px;cursor:pointer;color:#333;font-family:'Sarabun',sans-serif;font-weight:500}
 .btn-cancel:hover{background:#e0e0e0}
@@ -100,174 +137,528 @@ body{font-family:'Sarabun',sans-serif;background:#F4F6F4;color:#1a1a1a;min-heigh
 .confirm-box{background:#fff;border-radius:12px;padding:1.5rem;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
 .confirm-box p{font-size:15px;margin-bottom:1.25rem;color:#333}
 .confirm-actions{display:flex;justify-content:center;gap:10px}
-.btn-confirm-del{padding:9px 22px;background:#c0392b;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif}
-.btn-confirm-del:hover{background:#a93226}
+.btn-del-confirm{padding:9px 22px;background:#c0392b;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif}
 
-@media(max-width:640px){
-  .container{padding:1rem}
-  .field-row{grid-template-columns:1fr}
+/* Toast notification */
+.toast{position:fixed;bottom:24px;right:24px;background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:10px;font-size:14px;z-index:999;opacity:0;transform:translateY(10px);transition:all 0.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{background:#0F6E56}
+.toast.error{background:#c0392b}
+
+/* Add Teacher Modal */
+.teacher-add-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;background:#0F6E56;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.15s;white-space:nowrap}
+.teacher-add-btn:hover{background:#085041}
+
+/* Stats teachers */
+.teacher-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:1.5rem}
+
+@media(max-width:600px){
   .topbar{padding:0 1rem}
-  .topbar-title{font-size:15px}
+  .nav-tabs{padding:0 0.5rem;overflow-x:auto}
+  .nav-tab{padding:12px 12px;font-size:13px}
+  .page{padding:1rem}
+  .teacher-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .tmodal-grid{grid-template-columns:1fr}
+  .teacher-toolbar{flex-direction:column;align-items:stretch}
+  .search-box{max-width:100%}
 }
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <div>
-    <div class="topbar-title">📢 บอร์ดประชาสัมพันธ์กิจกรรม</div>
-    <div class="topbar-sub">โรงเรียนพระมารดานิจจานุเคราะห์</div>
+  <div class="topbar-brand">
+    <div>
+      <div class="topbar-title">📢 โรงเรียนพระมารดานิจจานุเคราะห์</div>
+      <div class="topbar-sub">ระบบประชาสัมพันธ์และทะเบียนบุคลากร</div>
+    </div>
   </div>
-  <button class="btn-add" onclick="openModal()">
-    <i class="ti ti-plus"></i> เพิ่มกิจกรรม
-  </button>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button class="btn-add" onclick="openEventModal()" id="btn-add-event">
+      <i class="ti ti-plus"></i> เพิ่มกิจกรรม
+    </button>
+    <button class="teacher-add-btn" onclick="openTeacherAddModal()" id="btn-add-teacher" style="display:none">
+      <i class="ti ti-user-plus"></i> เพิ่มครู
+    </button>
+  </div>
 </div>
 
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="switchPage('events',this)"><i class="ti ti-calendar-event"></i> กิจกรรม</button>
+  <button class="nav-tab" onclick="switchPage('teachers',this)"><i class="ti ti-users"></i> ทะเบียนครู</button>
+</div>
+
+<!-- ========== EVENTS PAGE ========== -->
+<div class="page active" id="page-events">
 <div class="container">
-
+  <div style="margin-bottom:1.5rem"></div>
   <div class="stats" id="stats-bar"></div>
-
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('calendar',this)"><i class="ti ti-calendar"></i> ปฏิทิน</button>
-    <button class="tab" onclick="switchTab('list',this)"><i class="ti ti-list"></i> รายการทั้งหมด</button>
-  </div>
-
-  <!-- Calendar View -->
-  <div class="view active" id="view-calendar">
-    <div class="month-nav">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1rem;align-items:center;justify-content:space-between">
+    <div class="month-nav" style="display:flex;align-items:center;gap:10px" id="month-nav-wrap">
       <button onclick="changeMonth(-1)"><i class="ti ti-chevron-left"></i></button>
       <span class="month-label" id="month-label"></span>
       <button onclick="changeMonth(1)"><i class="ti ti-chevron-right"></i></button>
     </div>
+    <button class="fchip" onclick="toggleCalView()" id="cal-toggle" style="display:flex;align-items:center;gap:6px"><i class="ti ti-list"></i> ดูรายการ</button>
+  </div>
+  <div id="cal-view">
     <div class="cal-grid" id="cal-header"></div>
     <div class="cal-grid" id="cal-grid" style="margin-top:5px"></div>
   </div>
-
-  <!-- List View -->
-  <div class="view" id="view-list">
+  <div id="list-section" style="display:none">
     <div class="filter-bar" id="filter-bar"></div>
-    <div class="list-view" id="list-view"></div>
+    <div class="ev-list" id="ev-list"></div>
   </div>
 </div>
+</div>
 
-<!-- Add/Edit Modal -->
-<div id="modal-wrap" style="display:none">
-  <div class="modal-bg" onclick="bgClose(event)">
+<!-- ========== TEACHERS PAGE ========== -->
+<div class="page" id="page-teachers">
+<div class="container">
+  <div style="margin-bottom:1.5rem"></div>
+  <div class="teacher-stats" id="teacher-stats-bar"></div>
+  <div class="teacher-toolbar">
+    <div class="search-box">
+      <i class="ti ti-search"></i>
+      <input type="text" id="teacher-search" placeholder="ค้นหาชื่อ นามสกุล รหัส หรือวิชา..." oninput="renderTeachers()">
+    </div>
+    <div class="teacher-type-tabs">
+      <button class="tt-tab active" onclick="setTeacherType('all',this)">ทั้งหมด</button>
+      <button class="tt-tab" onclick="setTeacherType('thai',this)">ครูไทย</button>
+      <button class="tt-tab" onclick="setTeacherType('retired',this)">ครูเกษียณ</button>
+      <button class="tt-tab" onclick="setTeacherType('foreign',this)">ครูต่างชาติ</button>
+    </div>
+    <span class="teacher-count" id="teacher-count"></span>
+  </div>
+  <div class="teacher-grid" id="teacher-grid"></div>
+</div>
+</div>
+
+<!-- Event Modal -->
+<div id="event-modal-wrap" style="display:none">
+  <div class="modal-wrap" onclick="closeEventModal()">
     <div class="modal" onclick="event.stopPropagation()">
-      <h3 id="modal-title">เพิ่มกิจกรรมใหม่</h3>
+      <h3 id="ev-modal-title">เพิ่มกิจกรรมใหม่</h3>
       <div class="field-row">
-        <div class="field">
-          <label>ชื่อกิจกรรม *</label>
-          <input type="text" id="f-name" placeholder="เช่น ประชุมผู้ปกครอง">
-        </div>
-        <div class="field">
-          <label>ฝ่าย / กลุ่มงาน *</label>
-          <input type="text" id="f-dept" placeholder="เช่น ฝ่ายวิชาการ">
-        </div>
+        <div class="field"><label>ชื่อกิจกรรม *</label><input type="text" id="f-name" placeholder="เช่น ประชุมผู้ปกครอง"></div>
+        <div class="field"><label>ฝ่าย / กลุ่มงาน *</label><input type="text" id="f-dept" placeholder="เช่น ฝ่ายวิชาการ" list="dept-list"></div>
       </div>
+      <datalist id="dept-list"></datalist>
       <div class="field-row">
-        <div class="field">
-          <label>วันที่เริ่ม *</label>
-          <input type="date" id="f-date">
-        </div>
-        <div class="field">
-          <label>วันที่สิ้นสุด (ถ้ามี)</label>
-          <input type="date" id="f-end">
-        </div>
+        <div class="field"><label>วันที่เริ่ม *</label><input type="date" id="f-date"></div>
+        <div class="field"><label>วันที่สิ้นสุด</label><input type="date" id="f-end"></div>
       </div>
+      <div class="field"><label>รายละเอียด</label><textarea id="f-desc" placeholder="รายละเอียดเพิ่มเติม..."></textarea></div>
       <div class="field">
-        <label>รายละเอียดกิจกรรม</label>
-        <textarea id="f-desc" placeholder="รายละเอียดเพิ่มเติม..."></textarea>
-      </div>
-      <div class="field">
-        <label><i class="ti ti-brand-google-drive" style="vertical-align:-2px"></i> ลิงก์ Google Drive (PDF / รูปภาพ)</label>
-        <div class="gdrive-wrap">
-          <span class="gdrive-icon">📂</span>
-          <input type="url" id="f-drive" placeholder="https://drive.google.com/file/d/..." oninput="updateDrivePreview()">
+        <label><i class="ti ti-brand-google-drive" style="vertical-align:-2px"></i> ลิงก์ Google Drive (ไฟล์แนบ)</label>
+        <div class="drive-wrap">
+          <span class="drive-icon">📂</span>
+          <input type="url" id="f-drive" placeholder="https://drive.google.com/..." oninput="updateDrivePreview()">
         </div>
-        <div class="file-preview-box" id="f-preview" style="display:none"></div>
+        <div class="drive-preview" id="f-preview" style="display:none"></div>
       </div>
-      <div class="field">
-        <label>สีประจำฝ่าย</label>
-        <div class="dept-colors" id="dept-colors"></div>
-      </div>
+      <div class="field"><label>สีประจำฝ่าย</label><div class="color-swatches" id="color-swatches"></div></div>
       <div class="modal-actions">
-        <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
-        <button class="btn-save" onclick="saveEvent()">บันทึก</button>
+        <button class="btn-cancel" onclick="closeEventModal()">ยกเลิก</button>
+        <button class="btn-save" onclick="saveEvent()">💾 บันทึก</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Delete Confirm -->
+<!-- Confirm Delete -->
 <div id="confirm-wrap" style="display:none">
   <div class="confirm-bg">
     <div class="confirm-box">
-      <p>ยืนยันการลบกิจกรรมนี้?</p>
+      <p id="confirm-msg">ยืนยันการลบกิจกรรมนี้?</p>
       <div class="confirm-actions">
         <button class="btn-cancel" onclick="closeConfirm()">ยกเลิก</button>
-        <button class="btn-confirm-del" id="confirm-del-btn">ลบกิจกรรม</button>
+        <button class="btn-del-confirm" id="confirm-del-btn">ลบ</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Teacher Detail Modal -->
+<div id="teacher-modal-wrap" style="display:none">
+  <div class="tmodal-bg" onclick="closeTeacherModal()">
+    <div class="tmodal" onclick="event.stopPropagation()">
+      <button class="tmodal-close" onclick="closeTeacherModal()"><i class="ti ti-x"></i></button>
+      <div id="tmodal-body"></div>
+      <div style="display:flex;gap:8px;justify-content:center;margin-top:1.25rem" id="tmodal-actions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Teacher Modal -->
+<div id="teacher-edit-modal-wrap" style="display:none">
+  <div class="modal-wrap" onclick="closeTeacherEditModal()">
+    <div class="modal" onclick="event.stopPropagation()" style="max-width:560px">
+      <h3 id="teacher-modal-title">เพิ่มข้อมูลครู</h3>
+      <div class="field-row">
+        <div class="field"><label>ชื่อ-นำหน้า *</label><input type="text" id="tf-name" placeholder="เช่น นางสาวสมใจ"></div>
+        <div class="field"><label>นามสกุล</label><input type="text" id="tf-surname" placeholder="นามสกุล"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>รหัสครู *</label><input type="text" id="tf-code" placeholder="เช่น 00999"></div>
+        <div class="field"><label>ประเภท *</label>
+          <select id="tf-type">
+            <option value="thai">ครูไทย</option>
+            <option value="retired">ครูเกษียณ</option>
+            <option value="foreign">ครูต่างชาติ</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>วุฒิการศึกษา</label><input type="text" id="tf-edu" placeholder="เช่น ปริญญาตรี"></div>
+        <div class="field"><label>สาขาวิชา</label><input type="text" id="tf-major" placeholder="เช่น ภาษาไทย"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>วิชาที่สอน</label><input type="text" id="tf-subject" placeholder="เช่น คณิตศาสตร์"></div>
+        <div class="field"><label>ระดับชั้น</label><input type="text" id="tf-level" placeholder="เช่น ป.4"></div>
+      </div>
+      <div class="field"><label>งาน/หน้าที่รับผิดชอบ</label><input type="text" id="tf-role" placeholder="เช่น ฝ่ายวิชาการ งานทะเบียน"></div>
+      <div class="field-row">
+        <div class="field"><label>อายุ</label><input type="number" id="tf-age" placeholder="อายุ" min="20" max="80"></div>
+        <div class="field"><label>เบอร์โทรศัพท์</label><input type="text" id="tf-phone" placeholder="0xx-xxx-xxxx"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>วันเริ่มทำงาน</label><input type="text" id="tf-start" placeholder="เช่น 16 พ.ค. 2540"></div>
+        <div class="field" id="tf-nationality-wrap"><label>สัญชาติ</label><input type="text" id="tf-nationality" placeholder="เช่น Philippines"></div>
+      </div>
+      <div class="field" id="tf-retired-wrap" style="display:none"><label>ปีที่เกษียณ</label><input type="text" id="tf-retired" placeholder="เช่น ปีที่ 3"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeTeacherEditModal()">ยกเลิก</button>
+        <button class="btn-save" onclick="saveTeacher()">💾 บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <script>
-const DEPT_COLORS=['#0F6E56','#185FA5','#BA7517','#A32D2D','#993556','#533AB7','#3B6D11'];
+// ==================== DATA ====================
+const COLORS=['#0F6E56','#185FA5','#BA7517','#A32D2D','#993556','#533AB7','#3B6D11','#0E7490'];
 const DAYS_TH=['อา','จ','อ','พ','พฤ','ศ','ส'];
 const MONTHS_TH=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
 
-let events = JSON.parse(localStorage.getItem('pr_events')||'[]');
-let curYear = new Date().getFullYear();
-let curMonth = new Date().getMonth();
-let selectedColor = DEPT_COLORS[0];
-let filterDept = 'all';
-let editId = null;
-let pendingDeleteId = null;
+let events=JSON.parse(localStorage.getItem('pmn_events')||'[]');
+let curYear=new Date().getFullYear(),curMonth=new Date().getMonth();
+let selColor=COLORS[0],editId=null,pendingDelId=null,calMode=true,filterDept='all',teacherType='all';
+let editTeacherId=null;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}
-function save(){localStorage.setItem('pr_events', JSON.stringify(events))}
+function saveEvs(){localStorage.setItem('pmn_events',JSON.stringify(events))}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-function init(){
-  if(events.length===0){
-    events=[
-      {id:uid(),name:'ประชุมผู้ปกครอง ภาคเรียนที่ 1',dept:'ฝ่ายปกครอง',date:'2026-05-26',endDate:'',desc:'ประชุมผู้ปกครองนักเรียนทุกระดับชั้น',color:'#A32D2D',drive:''},
-      {id:uid(),name:'อบรมครูหลักสูตรใหม่',dept:'ฝ่ายวิชาการ',date:'2026-05-28',endDate:'2026-05-29',desc:'อบรมพัฒนาหลักสูตรปีการศึกษา 2569',color:'#185FA5',drive:''},
-      {id:uid(),name:'กีฬาสีนักเรียน',dept:'ฝ่ายกิจกรรม',date:'2026-06-10',endDate:'2026-06-11',desc:'การแข่งขันกีฬาสีประจำปีการศึกษา 2569',color:'#0F6E56',drive:''},
-    ];
-    save();
-  }
-  renderAll();
+function showToast(msg,type='success'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type+' show';
+  setTimeout(()=>t.className='toast',2500);
 }
 
-function renderAll(){
-  renderStats();
-  renderCalendar();
-  renderList();
-  renderFilters();
+if(!events.length){
+  events=[
+    {id:uid(),name:'ประชุมผู้ปกครอง ภาคเรียนที่ 1',dept:'ฝ่ายปกครอง',date:'2026-05-26',endDate:'',desc:'ประชุมผู้ปกครองนักเรียนทุกระดับชั้น',color:'#A32D2D',drive:''},
+    {id:uid(),name:'อบรมครูหลักสูตรใหม่',dept:'ฝ่ายวิชาการ',date:'2026-05-28',endDate:'2026-05-29',desc:'อบรมพัฒนาหลักสูตรปีการศึกษา 2569',color:'#185FA5',drive:''},
+    {id:uid(),name:'กีฬาสีนักเรียน',dept:'ฝ่ายกิจกรรม',date:'2026-06-10',endDate:'2026-06-11',desc:'การแข่งขันกีฬาสีประจำปีการศึกษา 2569',color:'#0F6E56',drive:''},
+  ];saveEvs();
 }
 
+// ==================== TEACHERS DATA ====================
+let TEACHERS_THAI_DATA = JSON.parse(localStorage.getItem('pmn_teachers_thai') || 'null');
+let TEACHERS_RETIRED_DATA = JSON.parse(localStorage.getItem('pmn_teachers_retired') || 'null');
+let TEACHERS_FOREIGN_DATA = JSON.parse(localStorage.getItem('pmn_teachers_foreign') || 'null');
+
+const TEACHERS_THAI_DEFAULT = [
+  {id:'t001',code:'00015',name:'นางสาวสมลักษณ์',surname:'สุเมธ',age:69,edu:'ครุศาสตรดุษฎีบัณฑิต',major:'หลักสูตรและการสอน',role:'รองผู้อำนวยการ',subject:'',level:'',phone:'084-343-4968',start:'15 พ.ค. 2530'},
+  {id:'t002',code:'00016',name:'นางสาวจันทนา',surname:'ช่างเรือ',age:65,edu:'ศึกษาศาสตร์มหาบัณฑิต',major:'หลักสูตรและการสอน',role:'ผู้ช่วยผู้อำนวยการ ฝ่ายธุรการ-การเงิน',subject:'',level:'',phone:'089-884-9061',start:'15 พ.ค. 2530'},
+  {id:'t003',code:'00023',name:'นางบัวลอย',surname:'วงษ์อ่อน',age:55,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'083-954-6261',start:'16 พ.ค. 2533'},
+  {id:'t004',code:'00024',name:'นางบรรจง',surname:'พรหมสมัคร',age:54,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.2',phone:'089-117-2202',start:'16 พ.ค. 2533'},
+  {id:'t005',code:'00025',name:'นางจินดา',surname:'บำรุงราษฎร์',age:61,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.1',phone:'081-774-6594',start:'20 พ.ค. 2533'},
+  {id:'t006',code:'00026',name:'นางชวลี',surname:'จะระนะธัมโม',age:60,edu:'ศึกษาศาสตรบัณฑิต',major:'การแนะแนว',role:'งานธุรการ',subject:'',level:'',phone:'084-108-9732',start:'9 ก.พ. 2534'},
+  {id:'t007',code:'00029',name:'นางวลีรัตน์',surname:'เชิญขวัญมา',age:60,edu:'ปริญญาตรี',major:'นาฎศิลป์',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'097-145-9529',start:'1 พ.ค. 2534'},
+  {id:'t008',code:'00032',name:'นางสาวสุจิตรา',surname:'เวทยาวงศ์',age:65,edu:'การศึกษามหาบัณฑิต',major:'การมัธยมศึกษา',role:'ผู้ช่วยผู้อำนวยการแผนก ELPC',subject:'',level:'',phone:'089-212-9699',start:'1 พ.ค. 2534'},
+  {id:'t009',code:'00034',name:'นางนพรัตน์',surname:'ผลพิทักษ์',age:59,edu:'ครุศาสตรบัณฑิต',major:'บริหารการศึกษา',role:'งานธุรการ-การเงิน',subject:'',level:'',phone:'081-657-3549',start:'2 ก.พ. 2535'},
+  {id:'t010',code:'00038',name:'นางจารุวัตร',surname:'เขียวโชติ',age:60,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'คณิตศาสตร์',level:'ป.1',phone:'086-898-3355',start:'1 เม.ย. 2537'},
+  {id:'t011',code:'00042',name:'นางสาววิไล',surname:'นิกรพรอุดม',age:56,edu:'บริหารธุรกิจบัณฑิต',major:'การเงิน',role:'ฝ่ายวิชาการ งานทะเบียนวัดผล',subject:'',level:'',phone:'086-038-1250',start:'1 ก.พ. 2538'},
+  {id:'t012',code:'00044',name:'นางสาวเปรมณพิชญ์',surname:'ชอบสุข',age:58,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'ฝ่ายวิชาการ งานนิเทศการสอนระดับประถม',subject:'',level:'',phone:'062-941-9956',start:'10 พ.ค. 2538'},
+  {id:'t013',code:'00046',name:'นางสมจิต',surname:'จริยาวัฒนกุล',age:58,edu:'ครุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ป.6',phone:'081-483-3989',start:'1 มิ.ย. 2538'},
+  {id:'t014',code:'00048',name:'นายชัชมาศ',surname:'ดวงบุปผา',age:56,edu:'ปริญญาตรี',major:'ศิลปะศึกษา',role:'ฝ่ายกิจการนักเรียน งานระเบียบวินัย',subject:'ศิลปะ',level:'ม.4',phone:'093-399-3455',start:'1 พ.ค. 2538'},
+  {id:'t015',code:'00050',name:'นางฐิตาภัสร์',surname:'ธนารุจน์สานนท์',age:58,edu:'ปริญญาโท',major:'การศึกษาปฐมวัย',role:'ผู้ช่วยผู้อำนวยการแผนกอนุบาล',subject:'',level:'',phone:'089-922-3044',start:'1 เม.ย. 2539'},
+  {id:'t016',code:'00053',name:'นางภารดี',surname:'เทศชารี',age:51,edu:'ปริญญาโท',major:'เทคโนโลยีและสื่อสารการศึกษา',role:'ผู้ช่วยผู้อำนวยการฝ่ายจิตตาภิบาล',subject:'คริสตศาสนาและคำสอน',level:'ม.5',phone:'063-216-3100',start:'1 มิ.ย. 2539'},
+  {id:'t017',code:'00057',name:'นางบุญนาค',surname:'ชาญช่าง',age:59,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'098-825-9874',start:'1 พ.ค. 2530'},
+  {id:'t018',code:'00059',name:'นางอมรรัตน์',surname:'หงษ์สูงเนิน',age:52,edu:'ปริญญาโท',major:'หลักสูตรและการสอน',role:'',subject:'วิทยาศาสตร์',level:'ป.5',phone:'081-855-7255',start:'16 พ.ค. 2540'},
+  {id:'t019',code:'00060',name:'นายสรนะ',surname:'นามวงษ์',age:49,edu:'ปริญญาตรี',major:'เทคโนโลยีและนวัตกรรมทางการศึกษา',role:'ฝ่ายบริหารงานทั่วไป งานสารสนเทศ',subject:'วิทยาการคำนวณ',level:'ป.4',phone:'085-229-3030',start:'15 พ.ค. 2540'},
+  {id:'t020',code:'00061',name:'นายเกียรติคุณ',surname:'บุญพิบูรณ์',age:52,edu:'ปริญญาโท',major:'นิเทศการศึกษาและพัฒนาหลักสูตร',role:'ฝ่ายวิชาการ งานนิเทศการสอนระดับมัธยม',subject:'ภาษาไทย',level:'ม.6',phone:'081-855-5409',start:'27 มิ.ย. 2540'},
+  {id:'t021',code:'00064',name:'นายอัครเดช',surname:'มั่นคง',age:52,edu:'ปริญญาตรี',major:'วิทยาการคอมพิวเตอร์',role:'ฝ่ายบริหารงานทั่วไป งานศูนย์คอมพิวเตอร์',subject:'วิทยาการคำนวณ',level:'ป.3',phone:'081-905-2146',start:'2 ต.ค. 2540'},
+  {id:'t022',code:'00067',name:'นางสาวนริศรา',surname:'นารินรักษ์',age:56,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'คริสตศาสนา',level:'ป.3',phone:'085-821-3038',start:'1 เม.ย. 2541'},
+  {id:'t023',code:'00068',name:'นางสาววราภรณ์',surname:'มโนบาล',age:51,edu:'ปริญญาตรี',major:'ดนตรีไทย',role:'',subject:'ดนตรี',level:'ป.4-5',phone:'084-387-9048',start:'5 พ.ค. 2541'},
+  {id:'t024',code:'00074',name:'นางสาวเสาวภา',surname:'นารินรักษ์',age:54,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'คริสตศาสนาและคำสอน',level:'ป.2',phone:'090-008-3202',start:'10 พ.ค. 2542'},
+  {id:'t025',code:'00078',name:'นางสาวสุฑาพร',surname:'จันทร์มณี',age:49,edu:'ปริญญาโท',major:'การจัดการทรัพยากรมนุษย์',role:'ฝ่ายวิชาการ งานหลักสูตรและการสอนประถม',subject:'ภาษาอังกฤษ',level:'ป.1',phone:'081-905-1843',start:'8 พ.ค. 2542'},
+  {id:'t026',code:'00082',name:'นางสาวนนท์ธิฌา',surname:'กงแก้ว',age:56,edu:'ปริญญาตรี',major:'รัฐศาสตร์',role:'ฝ่ายวิชาการ งานห้องสมุดประถม',subject:'',level:'',phone:'065-396-9228',start:'17 เม.ย. 2543'},
+  {id:'t027',code:'00084',name:'นางวิลาวัลย์',surname:'โพธิกิ่ง',age:60,edu:'ปริญญาตรี',major:'สารสนเทศ',role:'ฝ่ายธุรการ-การเงิน งานทะเบียน',subject:'',level:'',phone:'081-307-5257',start:'16 พ.ค. 2543'},
+  {id:'t028',code:'00085',name:'นางสาววรนุช',surname:'ธูปทอง',age:55,edu:'ปริญญาตรี',major:'เทคโนโลยีและนวัตกรรมทางการศึกษา',role:'',subject:'คอมพิวเตอร์',level:'ปฐมวัย',phone:'098-857-5979',start:'1 ก.ย. 2543'},
+  {id:'t029',code:'00086',name:'นางสาวพิกุล',surname:'เพชรเมือง',age:54,edu:'ครุศาสตรบัณฑิต',major:'เทคโนโลยีนวัตกรรมการศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.1',phone:'090-556-9292',start:'4 ก.ย. 2543'},
+  {id:'t030',code:'00088',name:'นางสาวนิรมล',surname:'เพ็งสมยา',age:50,edu:'ครุศาสตรบัณฑิต',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ม.6',phone:'087-685-3923',start:'27 มี.ค. 2544'},
+  {id:'t031',code:'00089',name:'นางสาวอำไพ',surname:'อรุณไชย',age:58,edu:'ปริญญาตรี',major:'',role:'',subject:'วิทยาศาสตร์',level:'ป.3',phone:'085-147-8228',start:'27 มี.ค. 2544'},
+  {id:'t032',code:'00090',name:'นางรัชภร',surname:'แก่นวงศ์',age:55,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.2',phone:'094-924-9688',start:'12 พ.ค. 2544'},
+  {id:'t033',code:'00091',name:'นางสุภาพร',surname:'อินปั๋น',age:50,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาไทย',level:'ป.3',phone:'081-254-9939',start:'8 พ.ค. 2544'},
+  {id:'t034',code:'00093',name:'นางภูริศา',surname:'หาญวัฒนาศิริ',age:48,edu:'ปริญญาตรี',major:'วิทยาศาสตร์ (เคมี)',role:'',subject:'วิทยาการคำนวณ',level:'ม.4',phone:'064-569-1696',start:'1 ต.ค. 2544'},
+  {id:'t035',code:'00094',name:'นางสาวขวัญลดา',surname:'ชงโค',age:56,edu:'ปริญญาตรี',major:'เทคโนโลยีสารสนเทศ/จิตวิทยาและการแนะแนว',role:'',subject:'วิทยาการคำนวณ',level:'ป.4',phone:'090-909-5877',start:'12 พ.ค. 2544'},
+  {id:'t036',code:'00095',name:'นายวิสิทธิ์',surname:'ศรีแก้ว',age:51,edu:'วท.บ, ศศ.ม',major:'พลศึกษา',role:'ฝ่ายอาคารสถานที่ฯ งานจราจร',subject:'พลศึกษา',level:'ม.6',phone:'083-786-1855',start:'24 ต.ค. 2544'},
+  {id:'t037',code:'00098',name:'นายเอนก',surname:'วงศ์วรรณ',age:46,edu:'ปริญญาโท',major:'การมัธยมศึกษา',role:'ผู้ช่วยผู้อำนวยการฝ่ายวิชาการ',subject:'',level:'',phone:'083-556-6363',start:'3 มิ.ย. 2545'},
+  {id:'t038',code:'00099',name:'นางสาววารุณี',surname:'ธรรมรักษ์',age:48,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'',subject:'คณิตศาสตร์',level:'ป.1',phone:'089-509-5902',start:'4 มิ.ย. 2545'},
+  {id:'t039',code:'00102',name:'นางชนัญพัทธ์',surname:'เดชาวัตสินสิริ',age:54,edu:'ปริญญาเอก',major:'พัฒนศึกษาศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ม.6',phone:'097-356-6295',start:'16 พ.ค. 2546'},
+  {id:'t040',code:'00103',name:'นางสาวชื่นนภา',surname:'กันพร้อม',age:46,edu:'ปริญญาตรี',major:'วิทยาการคอมพิวเตอร์',role:'ผู้ช่วยผู้อำนวยการฝ่ายกิจการนักเรียน',subject:'วิทยาการคำนวณ',level:'ม.6',phone:'090-092-5048',start:'1 เม.ย. 2546'},
+  {id:'t041',code:'00105',name:'นางสาวศศิธร',surname:'วงศรีปราการ',age:49,edu:'บริหารธุรกิจบัณฑิต',major:'คอมพิวเตอร์ธุรกิจ',role:'',subject:'วิทยาการคำนวณ',level:'ป.5-6',phone:'080-047-9738',start:'16 พ.ค. 2546'},
+  {id:'t042',code:'00106',name:'นางศิรประภา',surname:'มะเปี่ยม',age:46,edu:'ปริญญาโท',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'081-712-9198',start:'3 พ.ย. 2546'},
+  {id:'t043',code:'00107',name:'นายรัก',surname:'สุภะสาร',age:49,edu:'ปริญญาตรี',major:'พลศึกษา',role:'',subject:'สุขศึกษาและพลศึกษา',level:'ป.5',phone:'081-792-6424',start:'3 ก.พ. 2547'},
+  {id:'t044',code:'00108',name:'นางสาวกรรณิการ์',surname:'วิจิตรกูล',age:54,edu:'ปริญญาตรี',major:'ภาษาอังกฤษธุรกิจ',role:'',subject:'ภาษาอังกฤษ',level:'ม.2',phone:'084-162-4742',start:'10 พ.ค. 2547'},
+  {id:'t045',code:'00109',name:'นางสาวชุลีพร',surname:'ใช้ปัญญา',age:46,edu:'ปริญญาตรี',major:'สุขศึกษา',role:'',subject:'สุขศึกษา',level:'ม.4',phone:'081-314-9805',start:'17 พ.ค. 2547'},
+  {id:'t046',code:'00110',name:'นางยุภา',surname:'โพธิประดิษฐ์',age:58,edu:'ปริญญาตรี',major:'พัฒนาการเด็กและครอบครัว',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'081-195-3225',start:'10 พ.ค. 2547'},
+  {id:'t047',code:'00113',name:'นางสาวพจนีย์',surname:'สุภานิชย์',age:46,edu:'ปริญญาตรี',major:'วิทยาการคอมพิวเตอร์',role:'ฝ่ายวิชาการ งานหลักสูตรและการสอนมัธยม',subject:'วิทยาการคำนวณ',level:'ม.2',phone:'085-366-8724',start:'9 ส.ค. 2547'},
+  {id:'t048',code:'00116',name:'ว่าที่ร้อยตรีธีรทรรค์',surname:'พูลเอี่ยม',age:46,edu:'ปริญญาตรี',major:'พลศึกษา',role:'ฝ่ายกิจการนักเรียน งานระเบียบวินัย',subject:'พละศึกษา',level:'ม.5',phone:'086-555-3499',start:'22 ก.พ. 2548'},
+  {id:'t049',code:'00118',name:'นางสาวจินตนา',surname:'ศุภสมุทร',age:61,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'การงานอาชีพ',level:'ป.4',phone:'081-063-2191',start:'8 มี.ค. 2548'},
+  {id:'t050',code:'00120',name:'นางสาวสุภาวดี',surname:'ธรรมศิริ',age:44,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'081-254-3126',start:'28 มี.ค. 2548'},
+  {id:'t051',code:'00121',name:'นางพรรณวดี',surname:'รุ่งสุกใส',age:47,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'089-995-8338',start:'11 ก.ย. 2548'},
+  {id:'t052',code:'00123',name:'นางจรพร',surname:'กันตังพันธุ์',age:62,edu:'อนุปริญญา',major:'การเงินธนาคาร',role:'ฝ่ายอาคารสถานที่ฯ งานสระว่ายน้ำ',subject:'',level:'',phone:'086-773-5190',start:'30 พ.ย. 2548'},
+  {id:'t053',code:'00124',name:'นางสาวเปล่งศรี',surname:'บุตรสงกา',age:47,edu:'ปริญญาตรี',major:'จิตวิทยาแนะแนววัยรุ่น',role:'',subject:'ทัศนศิลป์',level:'ม.1',phone:'094-149-5256',start:'16 พ.ค. 2549'},
+  {id:'t054',code:'00125',name:'นางสาวสุภาวดี',surname:'ตรียัง',age:43,edu:'ปริญญาตรี',major:'วิทยาศาสตร์การกีฬา',role:'',subject:'สุขศึกษาและพลศึกษา',level:'ม.3',phone:'083-075-1249',start:'27 มี.ค. 2548'},
+  {id:'t055',code:'00129',name:'นางสาวจินดาพร',surname:'แท่งทอง',age:45,edu:'ปริญญาตรี',major:'นาฏศิลป์ไทย',role:'',subject:'นาฏศิลป์',level:'ป.1',phone:'081-354-2124',start:'28 ส.ค. 2549'},
+  {id:'t056',code:'00130',name:'นางสาวอำพร',surname:'เครื่องสาย',age:45,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'084-917-4424',start:'12 ธ.ค. 2549'},
+  {id:'t057',code:'00131',name:'นางสาววาสนา',surname:'ทองขาว',age:43,edu:'ครุศาสตรบัณฑิต',major:'การประถมศึกษา',role:'',subject:'คณิตศาสตร์,ภาษาไทย,วิทยาศาสตร์',level:'ป.2',phone:'086-788-3877',start:'15 พ.ค. 2550'},
+  {id:'t058',code:'00132',name:'นางสาวสุภาวดี',surname:'เภ้าด้วง',age:45,edu:'ปริญญาโท',major:'เทคโนโลยีการศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.2',phone:'089-020-3418',start:'15 พ.ค. 2550'},
+  {id:'t059',code:'00133',name:'นางสาววลัยภรณ์',surname:'ศรีบูชา',age:41,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'แผนกอนุบาล งานวิชาการ',subject:'',level:'',phone:'092-954-5542',start:'15 พ.ค. 2550'},
+  {id:'t060',code:'00134',name:'นางปัญญาวัจน์',surname:'ชีรานนท์',age:47,edu:'บริหารธุรกิจบัณฑิต',major:'บริหารสำนักงาน',role:'ฝ่ายจิตตาภิบาล งานคริสตศาสนธรรม',subject:'คริสตศาสนธรรม',level:'ป.5',phone:'089-680-9347',start:'29 มี.ค. 2550'},
+  {id:'t061',code:'00136',name:'นางสาวอานุเนียน',surname:'คีรีบรรพต',age:49,edu:'ปริญญาตรี',major:'ภาษาจีน',role:'',subject:'ภาษาจีน',level:'ป.6',phone:'097-297-6284',start:'2 ก.ค. 2550'},
+  {id:'t062',code:'00138',name:'นางสาวอนงค์นาถ',surname:'พันธ์โรจน์',age:46,edu:'ปริญญาตรี',major:'คอมพิวเตอร์อุตสาหกรรม',role:'ฝ่ายวิชาการ งานวัดและประเมินผลประถม',subject:'วิทยาการคำนวณ',level:'ป.3',phone:'081-922-1478',start:'19 พ.ย. 2550'},
+  {id:'t063',code:'00139',name:'นางสาวพัชรนันท์',surname:'พิพัฒน์ธนกรกุล',age:52,edu:'ปริญญาตรี',major:'การวัดและประเมินผลการศึกษา',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'061-869-9269',start:'15 พ.ค. 2551'},
+  {id:'t064',code:'00141',name:'นางสาววารี',surname:'เกิดเทศ',age:57,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'ศิลปะ',level:'ป.1',phone:'094-559-7911',start:'15 พ.ค. 2551'},
+  {id:'t065',code:'00142',name:'นางสาวกาญจนา',surname:'อินทรกำแหง',age:43,edu:'ปริญญาตรี',major:'การบัญชี',role:'ฝ่ายธุรการ-การเงิน งานบัญชี',subject:'',level:'',phone:'089130-4341',start:'2 มิ.ย. 2551'},
+  {id:'t066',code:'00144',name:'นางสาววารุณี',surname:'ตัญวัฒนา',age:43,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'086-080-2406',start:'15 พ.ค. 2552'},
+  {id:'t067',code:'00147',name:'นางสาวธรรมดา',surname:'พงษ์สุวรรณ',age:46,edu:'ครุศาสตรบัณฑิต',major:'จิตวิทยาและการแนะแนว',role:'ฝ่ายกิจการนักเรียน งานแนะแนว',subject:'',level:'',phone:'088-991-6549',start:'9 มิ.ย. 2552'},
+  {id:'t068',code:'00150',name:'นางสาวอังสุมารินทร์',surname:'พงศาปาน',age:42,edu:'ครุศาสตรมหาบัณฑิต',major:'หลักสูตรและการสอน',role:'',subject:'สังคมศึกษา',level:'ป.5',phone:'089-945-4659',start:'6 พ.ค. 2553'},
+  {id:'t069',code:'00152',name:'นายศรายุธ',surname:'หิรัญหลาย',age:36,edu:'ปวส.',major:'เทคโนโลยีสารสนเทศ',role:'ฝ่ายอาคารสถานที่ฯ งานพัสดุครุภัณฑ์',subject:'',level:'',phone:'078-257-6050',start:'11 พ.ค. 2553'},
+  {id:'t070',code:'00154',name:'นางสาวศุภกานต์',surname:'ฝาพับ',age:43,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.2',phone:'081-560-5153',start:'3 มิ.ย. 2553'},
+  {id:'t071',code:'00155',name:'นางสาวรุ่งทิพย์',surname:'พรชัยเจริญกิจ',age:44,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'091-776-6051',start:'5 พ.ย. 2553'},
+  {id:'t072',code:'00156',name:'นางสาวพรศรี',surname:'จันทร์ต้อย',age:40,edu:'ปริญญาตรี',major:'สุขศึกษา',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'094-772-5888',start:'1 ธ.ค. 2553'},
+  {id:'t073',code:'00157',name:'นางสาวพนิดา',surname:'แสงสาร',age:40,edu:'ปริญญาตรี',major:'การเมืองการปกครอง',role:'แผนกอนุบาล งานประชาสัมพันธ์และพยาบาล',subject:'',level:'',phone:'098-251-4001',start:'7 ธ.ค. 2553'},
+  {id:'t074',code:'00159',name:'นางวิภาดา',surname:'วรรณสุข',age:40,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'086-544-8310',start:'18 พ.ค. 2554'},
+  {id:'t075',code:'00160',name:'นางสาวสมร',surname:'บุญเพิ่ม',age:39,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'083-302-3340',start:'18 พ.ค. 2554'},
+  {id:'t076',code:'00162',name:'นางสาววัชรา',surname:'ทิพเจริญ',age:40,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'065-681-5358',start:'18 พ.ค. 2554'},
+  {id:'t077',code:'00163',name:'นางสาวสุนิดา',surname:'ทิพประมวล',age:39,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'082-831-4346',start:'18 พ.ค. 2554'},
+  {id:'t078',code:'00165',name:'นางสาวจุฑาภัค',surname:'อยู่เป็นสุข',age:39,edu:'ปริญญาตรี',major:'นาฏศิลป์ไทย–ละครนาง',role:'',subject:'นาฏศิลป์',level:'ป.3',phone:'066-163-2619',start:'18 พ.ค. 2554'},
+  {id:'t079',code:'00166',name:'นายกฤษดา',surname:'อินทรกำแหง',age:50,edu:'ปริญญาตรี',major:'วิทยาศาสตร์การกีฬา',role:'',subject:'สุขศึกษาและพลศึกษา',level:'ป.1',phone:'089-145-7366',start:'18 พ.ค. 2554'},
+  {id:'t080',code:'00167',name:'นางสาวรัตนาพร',surname:'จงเทพ',age:44,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.1',phone:'082-798-4258',start:'18 พ.ค. 2554'},
+  {id:'t081',code:'00169',name:'นางสาวจารุวรรณ',surname:'ทั่งสุวรรณ',age:45,edu:'ปริญญาตรี',major:'การตลาด',role:'ฝ่ายวิชาการ งานหลักสูตรและการสอน',subject:'',level:'',phone:'081-655-8793',start:'1 มิ.ย. 2554'},
+  {id:'t082',code:'00170',name:'นางปุญชรัสมิ์',surname:'ณัชชกุล',age:47,edu:'ปริญญาโท',major:'เทคโนโลยีสารสนเทศ',role:'',subject:'คณิตศาสตร์',level:'ป.3',phone:'081-341-7778',start:'1 มิ.ย. 2554'},
+  {id:'t083',code:'00171',name:'นางสาวขนิษฐา',surname:'สีแสงจันทร์',age:41,edu:'ปริญญาตรี',major:'บริหารธุรกิจ',role:'ฝ่ายธุรการ-การเงิน งานสหการ',subject:'',level:'',phone:'097-048-5871',start:'24 มิ.ย. 2554'},
+  {id:'t084',code:'00175',name:'นางสาวทิพวรรณ',surname:'หนูชะดี',age:38,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'082-447-6162',start:'14 พ.ค. 2555'},
+  {id:'t085',code:'000178',name:'นางสาวศศิพิณท์',surname:'เจียมโสภินพันธ์',age:44,edu:'ปริญญาตรี',major:'สื่อสารมวลชน',role:'ฝ่ายบริหารงานทั่วไป งานประชาสัมพันธ์',subject:'',level:'',phone:'087-711-7810',start:'1 มิ.ย. 2555'},
+  {id:'t086',code:'00179',name:'นางสาววรัญญา',surname:'เลิศสัฒนนนท์',age:47,edu:'ปริญญาโท',major:'การบริหารอาชีวศึกษา',role:'ผู้ช่วยผู้อำนวยการฝ่ายบริหารงานทั่วไป',subject:'วิทยาการคำนวณ',level:'ม.3',phone:'080-953-6596',start:'1 มิ.ย. 2555'},
+  {id:'t087',code:'00180',name:'นางสาวกรรณิการ์',surname:'อุปลา',age:40,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'084-552-4665',start:'12 มิ.ย. 2555'},
+  {id:'t088',code:'00181',name:'นางสาวเบญจวรรณ',surname:'บัวสุข',age:39,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'084-921-0613',start:'30 ก.ค. 2555'},
+  {id:'t089',code:'00182',name:'นางสาวธัญญพัทธ์',surname:'อิทธิรัตนฐิติกุล',age:44,edu:'ปริญญาตรี',major:'การเมืองการปกครอง',role:'',subject:'ประวัติศาสตร์',level:'ป.4',phone:'095-112-2669',start:'1 ส.ค. 2555'},
+  {id:'t090',code:'00183',name:'นายเชาวรินทร์',surname:'กลิ่นจิ๋ว',age:43,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษาและประวัติศาสตร์',level:'ป.2',phone:'095-810-0404',start:'9 ส.ค. 2555'},
+  {id:'t091',code:'00185',name:'นางสาวธัญญลักษณ์',surname:'น้อยบาท',age:37,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'098-263-8563',start:'7 พ.ค. 2556'},
+  {id:'t092',code:'00186',name:'นางสาววรัญญา',surname:'สุโข',age:37,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'098-263-8564',start:'7 พ.ค. 2556'},
+  {id:'t093',code:'00187',name:'นางสาวธีราพร',surname:'สายชลเชี่ยว',age:37,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'083-699-1315',start:'7 พ.ค. 2556'},
+  {id:'t094',code:'00188',name:'นางสาวรุจีรา',surname:'ทิพวันต์',age:58,edu:'ครุศาสตรบัณฑิต',major:'การประถมศึกษา',role:'',subject:'คณิตศาสตร์',level:'ป.2',phone:'',start:'16 พ.ค. 2556'},
+  {id:'t095',code:'00190',name:'นายปรีชา',surname:'ทัพไทย',age:47,edu:'วิทยาศาสตรบัณฑิต',major:'พลศึกษา',role:'',subject:'สุขศึกษา/พลศึกษา',level:'ป.4',phone:'096-230-1671',start:'16 พ.ค. 2556'},
+  {id:'t096',code:'00191',name:'นางสาวหทัยรัตน์',surname:'ยุ่งยั่ง',age:36,edu:'ครุศาสตรบัณฑิต',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ป.6',phone:'086-996-9156',start:'8 พ.ค. 2556'},
+  {id:'t097',code:'00193',name:'นางสาวปฏิมากร',surname:'สุราช',age:45,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.1',phone:'093-125-3787',start:'16 พ.ค. 2556'},
+  {id:'t098',code:'00194',name:'นางสาวกนกอร',surname:'โคแสงรักษา',age:39,edu:'ปริญญาตรี',major:'การท่องเที่ยวและโรงแรม',role:'',subject:'การงานอาชีพ',level:'ป.1',phone:'061-409-3087',start:'3 มิ.ย. 2556'},
+  {id:'t099',code:'00198',name:'นางสาวธนภรณ์',surname:'ชื่นชม',age:48,edu:'ครุศาสตรบัณฑิต',major:'วิทยาศาสตร์',role:'',subject:'วิทยาศาสตร์',level:'ป.5',phone:'061-967-5559',start:'28 ต.ค. 2556'},
+  {id:'t100',code:'00199',name:'นางสาวจันทวดี',surname:'ไชยแสน',age:41,edu:'ปริญญาตรี',major:'วิทยาศาสตร์สิ่งแวดล้อม',role:'',subject:'วิทยาศาสตร์',level:'ป.6',phone:'084-702-2426',start:'28 ต.ค. 2556'},
+  {id:'t101',code:'00200',name:'นางรัชนี',surname:'ทัพไทย',age:46,edu:'ปริญญาตรี',major:'สื่อสารมวลชน',role:'',subject:'ภาษาอังกฤษ',level:'ป.3',phone:'085-116-1952',start:'28 ต.ค. 2556'},
+  {id:'t102',code:'00202',name:'นางสาวพรกมล',surname:'ไทยทรง',age:51,edu:'ปริญญาตรี',major:'การประถมศึกษา',role:'ฝ่ายวิชาการ งานห้องสมุดประถม',subject:'',level:'',phone:'065-518-9845',start:'12 พ.ค. 2557'},
+  {id:'t103',code:'00203',name:'นางสาวหทัยรัตน์',surname:'เพชรมณี',age:45,edu:'ปริญญาโท',major:'การสอนภาษาไทย',role:'ฝ่ายบริหารงานทั่วไป งานมาตรฐานฯ',subject:'ภาษาไทย',level:'ม.3',phone:'084-696-3696',start:'12 พ.ค. 2557'},
+  {id:'t104',code:'00204',name:'นางสาวนฤมล',surname:'เที่ยงประดิษฐ์',age:37,edu:'ปริญญาโท',major:'การสอนภาษาจีน',role:'',subject:'ภาษาจีน',level:'ม.5',phone:'063-964-6624',start:'12 พ.ค. 2557'},
+  {id:'t105',code:'00205',name:'นางสาวมยุรา',surname:'กิจเจริญ',age:34,edu:'ปริญญาตรี',major:'จิตวิทยา',role:'ฝ่ายธุรการ-การเงิน งานร้านค้า',subject:'',level:'',phone:'080-496-8081',start:'12 พ.ค. 2557'},
+  {id:'t106',code:'00206',name:'นางเบญญาพรรณ',surname:'สีคำ',age:34,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.5',phone:'085-732-1121',start:'12 พ.ค. 2557'},
+  {id:'t107',code:'00209',name:'นางสาวเบญจภรณ์',surname:'เชิญทอง',age:36,edu:'ปริญญาตรี',major:'พลศึกษา',role:'',subject:'พลศึกษา',level:'ปฐมวัย',phone:'093-575-9504',start:'12 พ.ค. 2557'},
+  {id:'t108',code:'00210',name:'นางสาววรรณวิศา',surname:'ทวะกาญจน์',age:36,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'087-294-8651',start:'12 พ.ค. 2557'},
+  {id:'t109',code:'00211',name:'นางสาวสุทธิลักษณ์',surname:'มั่งมี',age:44,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'094-920-7125',start:'12 พ.ค. 2557'},
+  {id:'t110',code:'00215',name:'นางสาวพิจาริน',surname:'ถาวงษ์กลาง',age:35,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'086-403-3129',start:'15 ก.ค. 2557'},
+  {id:'t111',code:'00216',name:'นางสาวมนสิชา',surname:'ปานเถื่อน',age:42,edu:'ปวส.',major:'การตลาด',role:'ฝ่ายธุรการ-การเงิน งานร้านค้าและสหการ',subject:'',level:'',phone:'087-052-1388',start:'1 ส.ค. 2557'},
+  {id:'t112',code:'00219',name:'นางสาวดนิตา',surname:'สุขุมาลวงษา',age:45,edu:'ศิลปศาสตรมหาบัณฑิต',major:'สื่อสารมวลชน',role:'ฝ่ายวิชาการ งานห้องสมุด',subject:'',level:'',phone:'094-581-9514',start:'11 พ.ค. 2558'},
+  {id:'t113',code:'00220',name:'นางรพีพันธ์',surname:'แผลงประพันธ์',age:60,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.6',phone:'089-793-8753',start:'11 พ.ค. 2558'},
+  {id:'t114',code:'00222',name:'นางสาวอัครพร',surname:'แซ่พ่าน',age:44,edu:'ครุศาสตรบัณฑิต',major:'คหกรรม',role:'',subject:'การงานอาชีพ',level:'ม.1',phone:'083-891-9621',start:'11 พ.ค. 2558'},
+  {id:'t115',code:'00224',name:'นางสาวจุรีภรณ์',surname:'ห้าวหาญคุณธรรม',age:44,edu:'ประกาศนียบัตรบัณฑิต',major:'วิชาชีพครู',role:'ฝ่ายธุรการ-การเงิน งานทะเบียน',subject:'',level:'',phone:'094-252-0699',start:'25 พ.ค. 2558'},
+  {id:'t116',code:'00226',name:'นางสาวนฤมล',surname:'เนตรบุตร',age:36,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.6',phone:'081-285-6177',start:'1 ก.ค. 2558'},
+  {id:'t117',code:'00229',name:'ว่าที่ร้อยตรีภาดา',surname:'วิวัฒนานนท์',age:33,edu:'ปริญญาตรี',major:'สุขศึกษาและพลศึกษา',role:'ผู้ช่วยผู้อำนวยการฝ่ายอาคารสถานที่ฯ',subject:'สุขศึกษาและพลศึกษา',level:'ม.3',phone:'092-250-6765',start:'10 พ.ค. 2559'},
+  {id:'t118',code:'00230',name:'นายฐานัตถ์',surname:'เที่ยงธรรม',age:32,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ม.3',phone:'084-667-2397',start:'10 พ.ค. 2559'},
+  {id:'t119',code:'00235',name:'นางสาวสรินยา',surname:'เอี่ยมสถาพร',age:32,edu:'ปริญญาตรี',major:'นิเทศศาสตร์',role:'ฝ่ายธุรการ-การเงิน งานการเงิน',subject:'',level:'',phone:'093-838-2455',start:'10 พ.ค. 2559'},
+  {id:'t120',code:'00237',name:'นางสาวจุฑามาศ',surname:'ไหวดี',age:33,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'095-782-0170',start:'23 พ.ค. 2559'},
+  {id:'t121',code:'00239',name:'นางสาววรรณภา',surname:'ชุมมา',age:34,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'096-954-6187',start:'15 ส.ค. 2559'},
+  {id:'t122',code:'00240',name:'นางสาวนธินี',surname:'สุทธลักษณ์',age:33,edu:'ปริญญาตรี',major:'สารสนเทศศาสตร์',role:'ฝ่ายวิชาการ งานห้องสมุดแผนก ELPC',subject:'',level:'',phone:'084-943-6132',start:'1 ก.ย. 2559'},
+  {id:'t123',code:'00242',name:'นางสาวเพชรรัตน์',surname:'บุญประเสริฐ',age:50,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'ห้องศูนย์พัฒนาศักยภาพสมอง',level:'ปฐมวัย',phone:'095-294-5399',start:'25 ต.ค. 2559'},
+  {id:'t124',code:'00243',name:'นางสาวสุนารี',surname:'ผ่านสำแดง',age:38,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ป.6',phone:'064-965-6939',start:'27 ต.ค. 2559'},
+  {id:'t125',code:'00245',name:'นางสาวอัมพร',surname:'ประเสริฐจุมพล',age:35,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ม.3',phone:'096-159-8695',start:'31 ต.ค. 2559'},
+  {id:'t126',code:'00248',name:'นางสาวรินทร์ลภัส',surname:'สุเมธีวงศ์',age:48,edu:'ครุศาสตร์มหาบัณฑิต',major:'สังคมศึกษา',role:'',subject:'งานบ้าน',level:'ป.5',phone:'087-499-6978',start:'13 มี.ค. 2560'},
+  {id:'t127',code:'00250',name:'นางสาวจิราพร',surname:'จำพานิชย์',age:36,edu:'บริหารธุรกิจ',major:'การตลาด',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.1',phone:'081-245-5951',start:'2 พ.ค. 2560'},
+  {id:'t128',code:'00252',name:'นางวิลัยลักษณ์',surname:'แผ่นเงิน',age:56,edu:'ปริญญาตรี',major:'วิทย์ทั่วไป',role:'',subject:'วิทยาศาสตร์',level:'ม.1',phone:'064-456-9732',start:'2 พ.ค. 2560'},
+  {id:'t129',code:'00257',name:'นางสาววารุณี',surname:'ชุมตรีนอก',age:35,edu:'ปริญญาโท',major:'วิทยาศาสตร์ศึกษา',role:'',subject:'วิทยาศาสตร์',level:'ม.2',phone:'092-119-0728',start:'8 พ.ค. 2560'},
+  {id:'t130',code:'00258',name:'นางสาวณัฐธยาน์',surname:'สวัสดี',age:30,edu:'ปวส.',major:'บัญชี',role:'ฝ่ายธุรการ-การเงิน งานบัญชี',subject:'',level:'',phone:'097-341-1679',start:'16 พ.ค. 2560'},
+  {id:'t131',code:'00262',name:'นายสุวรรณธรณ์',surname:'ใจยนต์',age:34,edu:'ปริญญาตรี',major:'ศิลปะการแสดง(นาฏศิลป์โขนลิง)',role:'',subject:'นาฏศิลป์',level:'ม.4',phone:'098-829-8827',start:'30 ต.ค. 2560'},
+  {id:'t132',code:'00264',name:'นางสาวสุภาภรณ์',surname:'สุริยัพ',age:31,edu:'ปริญญาตรี',major:'รัฐประศาสนศาสตร์',role:'',subject:'คริสต์ศาสนา',level:'ม.4',phone:'096-793-7136',start:'1 ธ.ค. 2560'},
+  {id:'t133',code:'00267',name:'นางสาววิริญา',surname:'วงปัญญา',age:32,edu:'ปริญญาตรี',major:'เทคโนโลยีสารสนเทศเพื่อธุรกิจ',role:'ฝ่ายวิชาการ งานทะเบียนวัดและประเมินผล',subject:'',level:'',phone:'064-698-3595',start:'9 พ.ค. 2561'},
+  {id:'t134',code:'00268',name:'นางสาวนริสรา',surname:'โพธิ์ศรี',age:34,edu:'ครุศาสตรบัณฑิต',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ป.6',phone:'092-634-0288',start:'9 พ.ค. 2561'},
+  {id:'t135',code:'00269',name:'นายอานันธศักดิ์',surname:'เวทยาวงศ์',age:32,edu:'ปริญญาตรี',major:'วิทยาศาสตร์การกีฬาและสุขภาพ',role:'',subject:'สุขศึกษาและพลศีกษา',level:'ป.6',phone:'089-022-7326',start:'9 พ.ค. 2561'},
+  {id:'t136',code:'00270',name:'นายสรวัฒน์',surname:'ดีสุดจิตร',age:31,edu:'ปริญญาตรี',major:'การภาพยตร์และวีดิทัศน์',role:'',subject:'ดนตรี',level:'ม.1',phone:'087-561-7171',start:'9 พ.ค. 2561'},
+  {id:'t137',code:'00273',name:'นายอนุกร',surname:'พันธ์สูงเนิน',age:30,edu:'ปริญญาโท',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ม.5',phone:'095-859-6699',start:'16 พ.ค. 2561'},
+  {id:'t138',code:'00278',name:'นางสาวเมลดา',surname:'เธียรโชติมณีกุล',age:35,edu:'ปริญญาตรี',major:'ชีววิทยา',role:'',subject:'วิทยาศาสตร์',level:'ป.6',phone:'083-979-6641',start:'18 มี.ค. 2562'},
+  {id:'t139',code:'00279',name:'นางสาวเกศินี',surname:'มีศรีผ่อง',age:38,edu:'ปริญญาตรี',major:'ดนตรีไทย',role:'',subject:'วิชาดนตรี',level:'ป.2',phone:'062-094-3663',start:'18 มี.ค. 2562'},
+  {id:'t140',code:'00280',name:'นางสาวสุฌิรัมย์',surname:'ขันแก้ว',age:43,edu:'ครุศาสตรบัณฑิต',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ม.ปลาย',phone:'064-553-3331',start:'18 มี.ค. 2562'},
+  {id:'t141',code:'00281',name:'นางสาวอนุธิดา',surname:'สุวรรณผา',age:35,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ป.4',phone:'088-120-6117',start:'9 พ.ค. 2562'},
+  {id:'t142',code:'00287',name:'นางสาวธนกานต์',surname:'สีใหม่',age:36,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ป.4',phone:'092-276-6749',start:'9 พ.ค. 2562'},
+  {id:'t143',code:'00288',name:'นางสาววิภาดา',surname:'มุขมณเฑียร',age:54,edu:'ปริญญาตรี',major:'สื่อสารมวลชน',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.1',phone:'095-945-5572',start:'9 พ.ค. 2562'},
+  {id:'t144',code:'00297',name:'นางสาวณัชชา',surname:'พ่วงพรหม',age:30,edu:'ครุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'ภาษาไทย,สังคมศึกษา,ประวัติศาสตร์',level:'ป.2',phone:'098-093-6336',start:'1 มิ.ย. 2563'},
+  {id:'t145',code:'00298',name:'นางสาวอมิตา',surname:'คงอิ่ม',age:30,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย,สังคมศึกษา,ประวัติศาสตร์',level:'ป.1',phone:'088-454-7834',start:'6 มิ.ย. 2563'},
+  {id:'t146',code:'00300',name:'นายกฤชคุณ',surname:'เบญจพิชัยเดช',age:51,edu:'ปริญญาโท',major:'นิเทศการศึกษาและการพัฒนาหลักสูตร',role:'',subject:'คณิตศาสตร์',level:'ม.2',phone:'062-692-3593',start:'1 มิ.ย. 2563'},
+  {id:'t147',code:'00301',name:'นางสาวพนัชญา',surname:'ประราศรี',age:35,edu:'ครุศาสตรบัณฑิต',major:'ภาษาอังกฤษ',role:'ฝ่ายธุรการ-การเงิน งานการเงิน',subject:'',level:'',phone:'094-423-6564',start:'18 มิ.ย. 2563'},
+  {id:'t148',code:'00302',name:'นายสุริยา',surname:'คงรื่น',age:39,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.2',phone:'061-205-7140',start:'3 ส.ค. 2563'},
+  {id:'t149',code:'00304',name:'นางสาวอุไรพร',surname:'ปัดทุม',age:34,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'082-494-8315',start:'7 ธ.ค. 2563'},
+  {id:'t150',code:'00305',name:'นางสาววารีรัตน์',surname:'สายบัว',age:36,edu:'ปริญญาตรี',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'063-232-4154',start:'14 ธ.ค. 2563'},
+  {id:'t151',code:'00308',name:'นายเกรียงศักดิ์',surname:'ศรีประมงค์',age:52,edu:'ปริญญาโท',major:'การจัดการเทคโนโลยีสารสนเทศ',role:'',subject:'ศูนย์คอมพิวเตอร์',level:'ม.ต้น',phone:'093-830-9539',start:'1 ก.พ. 2564'},
+  {id:'t152',code:'00311',name:'นางสาวศุภนิดา',surname:'มณีโชติ',age:34,edu:'ปริญญาโท',major:'นวัตกรรมการออกแบบ',role:'',subject:'ทัศนศิลป์',level:'ป.5',phone:'097-153-8787',start:'1 มิ.ย. 2564'},
+  {id:'t153',code:'00312',name:'นางสาวชลธิชา',surname:'ยินดี',age:35,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ป.5',phone:'083-645-5456',start:'12 ก.ค. 2564'},
+  {id:'t154',code:'00313',name:'นางสาวพิชญ์สินี',surname:'สุคันธวิภัติ',age:31,edu:'ปริญญาตรี',major:'การสอนภาษาจีน',role:'',subject:'ภาษาจีน',level:'ป.4',phone:'085-045-4176',start:'15 พ.ย. 2564'},
+  {id:'t155',code:'00314',name:'นางสาวสุนิตา',surname:'ศรีประมงค์',age:28,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'089-254-2007',start:'16 พ.ค. 2565'},
+  {id:'t156',code:'00316',name:'นางสาวอัญลิตา',surname:'วิระษร',age:34,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.4',phone:'085-227-8297',start:'16 พ.ค. 2565'},
+  {id:'t157',code:'00317',name:'นางสาวอภิญญา',surname:'คะกะเนนะ',age:29,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ป.3',phone:'094-259-4149',start:'16 พ.ค. 2565'},
+  {id:'t158',code:'00318',name:'นางสาวอรณี',surname:'จำปาเต็ม',age:28,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.3',phone:'095-123-0466',start:'16 พ.ค. 2565'},
+  {id:'t159',code:'00319',name:'นายไพศาล',surname:'มายา',age:28,edu:'ปริญญาตรี',major:'พลศึกษา',role:'',subject:'สุขศึกษาและพลศึกษา',level:'ป.3',phone:'096-225-1113',start:'16 พ.ค. 2565'},
+  {id:'t160',code:'00321',name:'นางสาวลลิตา',surname:'เขตร์กลาง',age:34,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'086-810-1233',start:'1 มิ.ย. 2565'},
+  {id:'t161',code:'00322',name:'นางสาวรัชนี',surname:'ฉิพิมาย',age:37,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'097-114-8132',start:'6 มิ.ย. 2565'},
+  {id:'t162',code:'00323',name:'นางสาวชญาดา',surname:'เทพรักษา',age:34,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'091-716-3912',start:'6 มิ.ย. 2565'},
+  {id:'t163',code:'00325',name:'นางสาวธมลชนก',surname:'โจว',age:29,edu:'ปริญญาตรี',major:'วรรณกรรมและการท่องเที่ยวจีน',role:'',subject:'ภาษาจีน',level:'ป.5',phone:'064-535-2997',start:'27 มิ.ย. 2565'},
+  {id:'t164',code:'00330',name:'นางสาวจิตติพร',surname:'อินนอก',age:28,edu:'ปริญญาตรี',major:'รัฐศาสตร์',role:'ฝ่ายวิชาการ งานวัดและประเมินผลประถม',subject:'',level:'',phone:'061-796-6408',start:'16 พ.ค. 2566'},
+  {id:'t165',code:'00331',name:'นายพีรพรรณ',surname:'พูลศรี',age:27,edu:'ครุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.5',phone:'092-590-8598',start:'16 พ.ค. 2566'},
+  {id:'t166',code:'00334',name:'นางสาวพรรณทิพา',surname:'เอมโอษฐ์',age:32,edu:'ครุศาสตรบัณฑิต',major:'วิทยาศาสตร์ทั่วไป',role:'',subject:'วิทยาศาสตร์',level:'ป.4',phone:'095-950-3935',start:'16 พ.ค. 2566'},
+  {id:'t167',code:'00337',name:'นางสาวปาริฉัตร',surname:'วิชัยดิษฐ',age:29,edu:'คุรุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ป.5',phone:'091-823-1913',start:'16 พ.ค. 2566'},
+  {id:'t168',code:'00338',name:'นางสาวณัฐณิชา',surname:'ช่วยคงคา',age:26,edu:'ครุศาสตรบัณฑิต',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ป.5',phone:'065-514-8463',start:'16 พ.ค. 2566'},
+  {id:'t169',code:'00339',name:'นางสาวชุลิตา',surname:'พราววิโรจน์',age:25,edu:'ครุศาสตรบัณฑิต',major:'วิทยาศาสตร์ทั่วไป',role:'',subject:'ชีววิทยา',level:'ม.6',phone:'091-870-3556',start:'16 พ.ค. 2566'},
+  {id:'t170',code:'00340',name:'นายธีระเดช',surname:'มั่นหมาย',age:32,edu:'ปริญญาตรี',major:'ดนตรีสากล',role:'',subject:'ดนตรี',level:'ป.6',phone:'084-724-9280',start:'18 พ.ค. 2566'},
+  {id:'t171',code:'00341',name:'นายธาดา',surname:'หอมอ่อน',age:25,edu:'ปริญญาตรี',major:'วิทยาศาสตร์การกีฬา',role:'',subject:'สุขศึกษาและพลศึกษา',level:'ป.2',phone:'090-985-0697',start:'29 พ.ค. 2566'},
+  {id:'t172',code:'00344',name:'นางสาวสุนิสา',surname:'ปฏิสุวรรณ',age:26,edu:'ครุศาสตรบัณฑิต',major:'วิทยาศาสตร์ทั่วไป',role:'',subject:'วิทยาศาสตร์พื้นฐาน',level:'ม.4-6',phone:'080-221-4020',start:'28 ส.ค. 2566'},
+  {id:'t173',code:'00346',name:'นางสาวชนิษฎา',surname:'เพชรฤทธิ์',age:30,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย,สังคม,ประวัติศาสตร์',level:'ป.4',phone:'093-637-8811',start:'24 ต.ค. 2566'},
+  {id:'t174',code:'00348',name:'นางสาวมัลลิยา',surname:'ศุภสมุทร',age:31,edu:'สาธารณสุขศาสตรบัณฑิต',major:'สาธารณสุขศาสตร์',role:'ฝ่ายกิจการนักเรียน งานพยาบาลมัธยม',subject:'',level:'',phone:'085-466-4346',start:'6 พ.ย. 2566'},
+  {id:'t175',code:'00349',name:'นายคณภัทร',surname:'สวนอินทร์',age:26,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ม.1',phone:'090-229-3954',start:'3 ม.ค. 2567'},
+  {id:'t176',code:'00350',name:'นายกนต์ธร',surname:'กิจมงคลชัย',age:31,edu:'ปริญญาโท',major:'ภาษาจีน',role:'',subject:'ภาษาจีน',level:'ม.2',phone:'084-229-5851',start:'16 พ.ค. 2567'},
+  {id:'t177',code:'00351',name:'นางสาวณัฐพร',surname:'สุมน',age:29,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ม.2',phone:'098-701-9629',start:'16 พ.ค. 2567'},
+  {id:'t178',code:'00352',name:'นางสาวพรสรวง',surname:'จันทร์ทิพย์',age:29,edu:'ครุศาสตรบัณฑิต',major:'เทคโนโลยีการศึกษาและคอมพิวเตอร์',role:'',subject:'วิทยาการคำนวณ',level:'ป.1',phone:'094-206-4391',start:'16 พ.ค. 2567'},
+  {id:'t179',code:'00353',name:'นางสาวทัตพิชา',surname:'เกตุพุธ',age:30,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ป.4',phone:'092-886-3378',start:'16 พ.ค. 2567'},
+  {id:'t180',code:'00355',name:'นางสาวสุภาพร',surname:'ตุดตะเวช',age:29,edu:'ครุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'ประวัติศาสตร์',level:'ป.5',phone:'063-647-7547',start:'16 พ.ค. 2567'},
+  {id:'t181',code:'00356',name:'นายวีรวัฒน์',surname:'พิเนตร์โชติ',age:35,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ม.1',phone:'098-424-8368',start:'16 พ.ค. 2567'},
+  {id:'t182',code:'00357',name:'นางสาวอริสรา',surname:'ดิษฐรักษ์',age:28,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.3',phone:'093-053-8509',start:'16 พ.ค. 2567'},
+  {id:'t183',code:'00358',name:'นายวัชรญากร',surname:'ลุนลา',age:34,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา',level:'ม.1',phone:'082-665-2964',start:'16 พ.ค. 2567'},
+  {id:'t184',code:'00359',name:'นางสาวปัทมา',surname:'สักลอ',age:30,edu:'ปริญญาตรี',major:'จิตวิทยา',role:'',subject:'แนะแนว',level:'ป.6',phone:'083-302-2609',start:'2 ก.ค. 2567'},
+  {id:'t185',code:'00360',name:'นายอนุวัฒน์',surname:'จินตนายงค์',age:26,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.5',phone:'062-565-8536',start:'8 ก.ค. 2567'},
+  {id:'t186',code:'00361',name:'นางสาวธัญญารัตน์',surname:'เศรษฐบุรี',age:27,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ป.6',phone:'095-192-7554',start:'1 ส.ค. 2567'},
+  {id:'t187',code:'00363',name:'นายนิธิกร',surname:'วิสุทธิ์วงศ์',age:28,edu:'ปริญญาตรี',major:'เคมี',role:'',subject:'วิทยาศาสตร์/เคมี',level:'ม.5',phone:'063-221-1988',start:'24 ต.ค. 2567'},
+  {id:'t188',code:'00365',name:'นางสาวชนากานต์',surname:'มีหล้า',age:24,edu:'ครุศาสตรบัณฑิต',major:'การศึกษาปฐมวัย',role:'',subject:'บูรณาการ',level:'ปฐมวัย',phone:'090-205-7534',start:'5 พ.ย. 2567'},
+  {id:'t189',code:'00366',name:'นางสาวนรินธร',surname:'มณีสวัสดิ์',age:28,edu:'ปริญญาตรี',major:'ดนตรี',role:'',subject:'ดนตรี',level:'ป.3',phone:'096-236-1478',start:'16 พ.ค. 2568'},
+  {id:'t190',code:'00367',name:'นางสาวมณีรัตน์',surname:'พิเนตร์โชติ',age:29,edu:'ปริญญาตรี',major:'คณิตศาสตร์',role:'',subject:'คณิตศาสตร์',level:'ป.4',phone:'090-190-5534',start:'16 พ.ค. 2568'},
+  {id:'t191',code:'00368',name:'นางสาวพัชริดา',surname:'ทิวกลาง',age:33,edu:'ปริญญาตรี',major:'ฟิสิกส์ประยุกต์',role:'',subject:'วิทยาศาสตร์',level:'ป.4',phone:'087-102-3524',start:'16 พ.ค. 2568'},
+  {id:'t192',code:'00369',name:'นางสาวศิริพร',surname:'หาญสูงเนิน',age:30,edu:'ปริญญาตรี',major:'ฟิสิกส์',role:'',subject:'วิทยาศาสตร์',level:'ม.3',phone:'064-694-6037',start:'16 พ.ค. 2568'},
+  {id:'t193',code:'00370',name:'นายพันแสง',surname:'พงศ์พิริยะเกียรติ',age:38,edu:'ปริญญาตรี',major:'ภาษาอังกฤษสื่อสารสากล',role:'',subject:'ภาษาอังกฤษ',level:'ม.4',phone:'085-150-5495',start:'16 พ.ค. 2568'},
+  {id:'t194',code:'00371',name:'นายศิริพิพัฒน์',surname:'โพธิพรม',age:28,edu:'ครุศาสตรบัณฑิต',major:'คอมพิวเตอร์ศึกษา',role:'',subject:'คอมพิวเตอร์',level:'ม.1',phone:'081-642-9155',start:'15 ก.ย. 2568'},
+  {id:'t195',code:'00372',name:'นางสาวพรชนก',surname:'คำศักดา',age:29,edu:'ปริญญาตรี',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.4',phone:'061-082-9180',start:'20 ต.ค. 2568'},
+  {id:'t196',code:'00373',name:'นางสาวปาริฉัตร',surname:'อินอ่อน',age:24,edu:'ครุศาสตรบัณฑิต',major:'นาฏศิลป์ศึกษา',role:'',subject:'วิชานาฏศิลป์',level:'ป.5',phone:'084-701-1254',start:'21 พ.ย. 2568'},
+  {id:'t197',code:'00374',name:'นางสาวบรรณฑรวรรณ',surname:'นาคช่วย',age:23,edu:'ปริญญาตรี',major:'ประถมศึกษา',role:'',subject:'ภาษาไทย,คณิตศาสตร์,วิทยาศาสตร์',level:'ป.2',phone:'087-596-7901',start:'16 พ.ค. 2569'},
+  {id:'t198',code:'00375',name:'นางสาวเบญจมาศ',surname:'ศรีใจวงค์',age:29,edu:'ปริญญาตรี',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษาและประวัติศาสตร์',level:'ป.1',phone:'096-682-9994',start:'16 พ.ค. 2569'},
+  {id:'t199',code:'00376',name:'นางสาวภรณ์นภา',surname:'เชยนิ่ม',age:26,edu:'ปริญญาตรี',major:'ภาษาไทย',role:'',subject:'ภาษาไทย',level:'ป.5',phone:'088-953-7879',start:'16 พ.ค. 2569'},
+  {id:'t200',code:'00377',name:'นางสาวพีชญา',surname:'พัฒนศิลป์เจริญ',age:30,edu:'ศิลปศาสตรมหาบัณฑิต',major:'ทัศนศิลป์',role:'',subject:'ทัศนศิลป์',level:'ป.4',phone:'097-124-1977',start:'16 พ.ค. 2569'},
+  {id:'t201',code:'00378',name:'นางสาวอริศรา',surname:'พิชัย',age:24,edu:'ครุศาสตรบัณฑิต',major:'สังคมศึกษา',role:'',subject:'สังคมศึกษา,ประวัติศาสตร์,ภาษาไทย',level:'ป.3',phone:'098-168-6709',start:'16 พ.ค. 2569'},
+  {id:'t202',code:'00379',name:'นางสาวสิริยากร',surname:'ศิริราชนิยม',age:54,edu:'',major:'',role:'',subject:'',level:'',phone:'',start:'16 พ.ค. 2569'},
+];
+
+const TEACHERS_RETIRED_DEFAULT = [
+  {id:'r001',code:'00011',name:'นางละเอียด',surname:'ศรีวรนันท์',age:66,edu:'ปริญญาตรี',major:'บรรณารักษศาสตร์',role:'ฝ่ายอาคารสถานที่ฯ งานสิ่งแวดล้อม',subject:'',level:'',phone:'086-381-5293',start:'1 มิ.ย. 2528',retiredYear:'ปีที่ 6'},
+  {id:'r002',code:'00013',name:'นางอำพันธ์',surname:'ชาภิรมย์',age:64,edu:'ครุศาสตรบัณฑิต',major:'การประถมศึกษา',role:'',subject:'คริสตศาสนา,งานบ้าน',level:'ป.1',phone:'092-276-0593',start:'8 พ.ย. 2528',retiredYear:'ปีที่ 4'},
+  {id:'r003',code:'00017',name:'นางลาวัลย์',surname:'เครือนพคุณ',age:63,edu:'ปริญญาตรี',major:'โภชนาการชุมชน',role:'',subject:'การงานอาชีพ',level:'ม.6',phone:'086-008-5233',start:'1 พ.ย. 2531',retiredYear:'ปีที่ 3'},
+  {id:'r004',code:'00033',name:'นายสมบูรณ์',surname:'หงษ์สูงเนิน',age:64,edu:'ครุศาสตรบัณฑิต',major:'พลศึกษา',role:'',subject:'พลศึกษา',level:'ม.1',phone:'089-815-1785',start:'16 พ.ค. 2534',retiredYear:'ปีที่ 4'},
+  {id:'r005',code:'00045',name:'นางสุรัชดา',surname:'วงมะแสน',age:63,edu:'ประกาศนียบัตรบัณฑิต',major:'ผู้ช่วยพยาบาล',role:'ฝ่ายกิจการนักเรียน งานพยาบาลประถม',subject:'',level:'',phone:'088-318-5996',start:'16 พ.ค. 2538',retiredYear:'ปีที่ 3'},
+  {id:'r006',code:'00051',name:'นางสนธยา',surname:'พรรณศิริ',age:64,edu:'ครุศาสตรบัณฑิต',major:'คอมพิวเตอร์ศึกษา',role:'',subject:'วิทยาการคำนวณ',level:'ป.2',phone:'095-964-9248',start:'15 พ.ค. 2539',retiredYear:'ปีที่ 4'},
+  {id:'r007',code:'00072',name:'นางกุลธิดา',surname:'สุวิมล',age:62,edu:'ครุศาสตรบัณฑิต',major:'การประถมศึกษา',role:'',subject:'คณิตศาสตร์',level:'ป.3',phone:'094-795-2622',start:'10 เม.ย. 2542',retiredYear:'ปีที่ 3'},
+  {id:'r008',code:'00083',name:'นางราตรี',surname:'บุญสำราญ',age:63,edu:'ครุศาสตรบัณฑิต',major:'ภาษาอังกฤษ',role:'',subject:'ภาษาอังกฤษ',level:'ป.4',phone:'097-124-7252',start:'18 เม.ย. 2543',retiredYear:'ปีที่ 5'},
+];
+
+const TEACHERS_FOREIGN_DEFAULT = [
+  {id:'f001',code:'001',name:'MRS. RUBY VIRAY OCAMPO',surname:'',age:55,edu:'Master of Art',major:'English Language Teaching',role:'',subject:'Conversation',level:'ม.ปลาย',phone:'08 1859 6452',start:'16 พ.ย. 2536',nationality:'Philippines'},
+  {id:'f002',code:'002',name:'MISS TERESA FLORES FUENTES',surname:'',age:59,edu:'Master of Education',major:'Arts in Education',role:'',subject:'Mathematics',level:'-',phone:'06 1850 7855',start:'1 มิ.ย. 2548',nationality:'Philippines'},
+  {id:'f003',code:'003',name:'MISS LEONORA GACUSAN GALINTA',surname:'',age:56,edu:'Master of Education',major:'Arts in Education',role:'',subject:'Math, Arts',level:'Grade 5',phone:'09 4719 2695',start:'15 ต.ค. 2512',nationality:'Philippines'},
+  {id:'f004',code:'005',name:'MRS.GINA IGNACIO FERNANDEZ',surname:'',age:49,edu:'Bachelor of Science',major:'Animal Science',role:'',subject:'Science',level:'ป.2',phone:'09 9261 5601',start:'15 พ.ค. 2551',nationality:'Philippines'},
+  {id:'f005',code:'007',name:'MR.NITINKUMAR KHANDARE',surname:'',age:46,edu:'Master of Computer Management',major:'Management',role:'',subject:'Science, Computer',level:'Grade 4',phone:'08 2145 6929',start:'11 พ.ค. 2552',nationality:'India'},
+  {id:'f006',code:'008',name:'MRS.ROSALIA MAURICIO ANG',surname:'',age:57,edu:'Bachelor of Elementary Education',major:'General',role:'',subject:'Math',level:'ป.3',phone:'08 8011 0690',start:'26 ต.ค. 2553',nationality:'Philippines'},
+  {id:'f007',code:'009',name:'MISS MARILINE NATIVIDAD TAGUINOD',surname:'',age:45,edu:'Bachelor of Elementary Education',major:'Math',role:'',subject:'Science',level:'ป.3',phone:'06 2747 1964',start:'21 มี.ค. 2554',nationality:'Philippines'},
+  {id:'f008',code:'0011',name:'MRS.HELEN DUMAYA MALANA',surname:'',age:58,edu:'Master of Arts in Education',major:'English',role:'',subject:'Conversation',level:'ปฐมวัย',phone:'09 9104 4684',start:'15 ธ.ค. 2554',nationality:'Philippines'},
+  {id:'f009',code:'0012',name:'MISS ROSANA DIZON VIRAY',surname:'',age:51,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Math',level:'ป.2',phone:'09 2101 3863',start:'26 ต.ค. 2553',nationality:'Philippines'},
+  {id:'f010',code:'0013',name:'MISS MELISSA VICENTE NAUNGAYAN',surname:'',age:39,edu:'Bachelor of Elementary Education',major:'English',role:'',subject:'Science',level:'ป.5',phone:'09 5104 4119',start:'7 พ.ค. 2556',nationality:'Philippines'},
+  {id:'f011',code:'0014',name:'MRS.DONNA GRACIA PACANA MABANO',surname:'',age:43,edu:'Bachelor of Secondary Education',major:'Mathematics',role:'',subject:'Science',level:'ป.1',phone:'08 1491 2706',start:'7 พ.ค. 2556',nationality:'Philippines'},
+  {id:'f012',code:'0019',name:'MR.THOMAS HUW GRIFFITHS',surname:'',age:39,edu:'Bachelor of Art',major:'History',role:'',subject:'English, Science, Computer, Health, PE.',level:'Grade 3',phone:'09 8259 7245',start:'25 ต.ค. 2559',nationality:'Wales/UK'},
+  {id:'f013',code:'0030',name:'MR.RYAN EDWARD ASTUDILLO',surname:'',age:42,edu:'Diploma in Teaching Education',major:'-',role:'',subject:'English, Science, Computer, Health, PE.',level:'Grade 1',phone:'08 6372 1414',start:'24 ก.ค. 2560',nationality:'Philippines'},
+  {id:'f014',code:'0033',name:'MRS.MADELYN DE OCAMPO GAUDIEL',surname:'',age:46,edu:'Bachelor of Elementary Education',major:'Science',role:'',subject:'Science',level:'ป.4',phone:'08 1493 0517',start:'16 พ.ค. 2561',nationality:'Philippines'},
+  {id:'f015',code:'0046',name:'MISS JENALYN MARASIGAN GUTIERREZ',surname:'',age:29,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Math',level:'ป.4',phone:'06 2969 3903',start:'1 มิ.ย. 2563',nationality:'Philippines'},
+  {id:'f016',code:'0050',name:'MISS JOSEPHINE ARRADAZA CRUZ',surname:'',age:36,edu:'Bachelor of Elementary Education',major:'Special Ed.',role:'',subject:'Conversation',level:'ป.2',phone:'08 0140 2376',start:'5 ส.ค. 2563',nationality:'Philippines'},
+  {id:'f017',code:'0058',name:'MR. SUMAN CHAKRADHAR',surname:'',age:38,edu:'Bachelor of Business Administration',major:'BBA International Business',role:'',subject:'Conversation',level:'ม.ปลาย',phone:'08 2864 3875',start:'23 พ.ค. 2565',nationality:'India'},
+  {id:'f018',code:'0059',name:'MR. ZWE HTET AUNG',surname:'',age:26,edu:'Bachelor of Business Administration',major:'-',role:'',subject:'Conversation',level:'ป.5',phone:'09 6205 9899',start:'1 ก.ย. 2567',nationality:'Myanmar'},
+  {id:'f019',code:'0060',name:'MISS SANDAR HTUN',surname:'',age:42,edu:'Master of Art',major:'English',role:'',subject:'Conversation',level:'ป.6',phone:'-',start:'1 ก.ย. 2567',nationality:'Myanmar'},
+  {id:'f020',code:'0063',name:'MISS JOLLYVI GALLAZA',surname:'',age:30,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Conversation',level:'ป.1',phone:'-',start:'1 พ.ย. 2565',nationality:'Philippines'},
+  {id:'f021',code:'0065',name:'MR.PEYMAN GOLCHIN',surname:'',age:45,edu:'Bachelor of Arts',major:'-',role:'',subject:'English, Computer, Health, PE.',level:'Grade 6',phone:'08 7048 7289',start:'9 ม.ค. 2566',nationality:'Iran'},
+  {id:'f022',code:'0069',name:'MR.REYNZ LASTIMOSO PANES',surname:'',age:27,edu:'Bachelor of Arts in English',major:'English',role:'',subject:'Conversation',level:'ปฐมวัย',phone:'065 559 9107',start:'16 พ.ค. 2568',nationality:'Philippines'},
+  {id:'f023',code:'0071',name:'MISS FAIDZA O.BANTAS',surname:'',age:30,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Conversation',level:'ป.4',phone:'093 058 4486',start:'25 พ.ค. 2566',nationality:'Philippines'},
+  {id:'f024',code:'0072',name:'MISS FERGIE ANN MENDEZ EDILLO',surname:'',age:37,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Science',level:'ป.6',phone:'065 559 8270',start:'1 ก.ย. 2568',nationality:'Philippines'},
+  {id:'f025',code:'0073',name:'MISS MAE ANTONETTE DAHAN AMOLO',surname:'',age:37,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Conversation',level:'ปฐมวัย',phone:'06 5710 2390',start:'5 ม.ค. 2568',nationality:'Philippines'},
+  {id:'f026',code:'0074',name:'MR.JAYSON JAY C.TUALA',surname:'',age:31,edu:'Bachelor of Art',major:'English',role:'',subject:'Conversation',level:'ป.6',phone:'-',start:'2 ก.พ. 2569',nationality:'Philippines'},
+  {id:'f027',code:'00076',name:'MISS EI NANDAR PHYOE',surname:'',age:31,edu:'Master of Science',major:'Math',role:'',subject:'Math',level:'ม.ต้น',phone:'094 453 8340',start:'16 พ.ค. 2567',nationality:'Myanmar'},
+  {id:'f028',code:'00077',name:'MISS NAW HSAR KPAW',surname:'',age:28,edu:'Master of Art',major:'English Language Teaching',role:'',subject:'Conversation',level:'ม.ต้น',phone:'08 0725 3372',start:'16 พ.ค. 2567',nationality:'Myanmar'},
+  {id:'f029',code:'0078',name:'MISS IRENE JANE A.RUBRICO',surname:'',age:27,edu:'Bachelor of Secondary Education',major:'Mathematics',role:'',subject:'Math',level:'ป.5',phone:'08 1034 3460',start:'16 พ.ค. 2567',nationality:'Philippines'},
+  {id:'f030',code:'0079',name:'MR.NIKOLAI LOPATIN',surname:'',age:28,edu:"Bachelor's degree",major:'East Asian research',role:'',subject:'English, Computer, Health, PE.',level:'Grade 5',phone:'092 883 8660',start:'19 พ.ค. 2568',nationality:'Russia'},
+  {id:'f031',code:'0080',name:'MR.EVGENII TEN',surname:'',age:26,edu:'Bachelor of Economic and Law',major:'-',role:'',subject:'English, Science, Computer, Health, PE.',level:'Grade 2',phone:'092 288 8708',start:'9 มิ.ย. 2568',nationality:'Russia'},
+  {id:'f032',code:'0081',name:'MISS CARYL MAE BERITON TAGLE',surname:'',age:24,edu:'Bachelor of Secondary Education',major:'English',role:'',subject:'Math',level:'ป.1',phone:'081 513 1392',start:'1 ก.ค. 2568',nationality:'Philippines'},
+  {id:'f033',code:'0083',name:'MR.AMANDEEP SINGH',surname:'',age:34,edu:'Bachelor of Commerce',major:'-',role:'',subject:'English, Computer, Health, PE.',level:'Grade 4',phone:'080 835 3972',start:'1 ก.ย. 2568',nationality:'India'},
+  {id:'f034',code:'0084',name:'MISS FAITH JAEL LUMAHAN',surname:'',age:25,edu:'Bachelor of Secondary Education',major:'Social Studies',role:'',subject:'Conversation',level:'ม.ต้น',phone:'09 3232 7361',start:'3 พ.ย. 2568',nationality:'Philippines'},
+  {id:'f035',code:'0084b',name:'MISS EAIN DRA LINN',surname:'',age:26,edu:'',major:'',role:'',subject:'',level:'ม.ต้น',phone:'-',start:'16 พ.ค. 2569',nationality:'Myanmar'},
+];
+
+// Initialize from localStorage or defaults
+if(!TEACHERS_THAI_DATA) { TEACHERS_THAI_DATA = TEACHERS_THAI_DEFAULT; localStorage.setItem('pmn_teachers_thai', JSON.stringify(TEACHERS_THAI_DATA)); }
+if(!TEACHERS_RETIRED_DATA) { TEACHERS_RETIRED_DATA = TEACHERS_RETIRED_DEFAULT; localStorage.setItem('pmn_teachers_retired', JSON.stringify(TEACHERS_RETIRED_DATA)); }
+if(!TEACHERS_FOREIGN_DATA) { TEACHERS_FOREIGN_DATA = TEACHERS_FOREIGN_DEFAULT; localStorage.setItem('pmn_teachers_foreign', JSON.stringify(TEACHERS_FOREIGN_DATA)); }
+
+function saveTeachers(){
+  localStorage.setItem('pmn_teachers_thai', JSON.stringify(TEACHERS_THAI_DATA));
+  localStorage.setItem('pmn_teachers_retired', JSON.stringify(TEACHERS_RETIRED_DATA));
+  localStorage.setItem('pmn_teachers_foreign', JSON.stringify(TEACHERS_FOREIGN_DATA));
+}
+
+// ==================== EVENTS ====================
 function renderStats(){
   const now=new Date();
   const thisMonth=events.filter(e=>{const d=new Date(e.date);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()});
   const depts=[...new Set(events.map(e=>e.dept))];
-  const upcoming=events.filter(e=>new Date(e.date)>=now);
+  const upcoming=events.filter(e=>new Date(e.date)>=new Date(now.toDateString()));
   document.getElementById('stats-bar').innerHTML=`
     <div class="stat-card"><div class="stat-num">${events.length}</div><div class="stat-label">กิจกรรมทั้งหมด</div></div>
     <div class="stat-card"><div class="stat-num">${thisMonth.length}</div><div class="stat-label">เดือนนี้</div></div>
-    <div class="stat-card"><div class="stat-num">${upcoming.length}</div><div class="stat-label">กิจกรรมที่กำลังจะมาถึง</div></div>
+    <div class="stat-card"><div class="stat-num">${upcoming.length}</div><div class="stat-label">กิจกรรมที่จะมาถึง</div></div>
     <div class="stat-card"><div class="stat-num">${depts.length}</div><div class="stat-label">ฝ่ายที่เกี่ยวข้อง</div></div>
   `;
 }
 
 function renderCalendar(){
   const hdr=document.getElementById('cal-header');
-  hdr.innerHTML=DAYS_TH.map(d=>`<div class="cal-header-cell">${d}</div>`).join('');
+  hdr.innerHTML=DAYS_TH.map(d=>`<div class="cal-hcell">${d}</div>`).join('');
   document.getElementById('month-label').textContent=`${MONTHS_TH[curMonth]} ${curYear+543}`;
   const first=new Date(curYear,curMonth,1).getDay();
   const days=new Date(curYear,curMonth+1,0).getDate();
   const today=new Date();
-  const grid=document.getElementById('cal-grid');
   let html='';
   for(let i=0;i<first;i++){
     const d=new Date(curYear,curMonth,0-first+i+2);
@@ -277,110 +668,79 @@ function renderCalendar(){
     const isToday=today.getFullYear()===curYear&&today.getMonth()===curMonth&&today.getDate()===d;
     const ds=`${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
     const dayEvts=events.filter(e=>e.date===ds||(e.endDate&&ds>=e.date&&ds<=e.endDate));
-    const dots=dayEvts.slice(0,2).map(e=>`<div class="event-dot"><div class="dot" style="background:${e.color}"></div><span>${e.name}</span></div>`).join('');
+    const dots=dayEvts.slice(0,2).map(e=>`<div class="ev-dot"><div class="dot" style="background:${e.color}"></div><span>${e.name}</span></div>`).join('');
     const more=dayEvts.length>2?`<div style="font-size:9px;color:#888">+${dayEvts.length-2} อื่นๆ</div>`:'';
     html+=`<div class="cal-day${isToday?' today':''}" onclick="jumpToDay('${ds}')"><div class="day-num">${d}</div>${dots}${more}</div>`;
   }
-  grid.innerHTML=html;
+  document.getElementById('cal-grid').innerHTML=html;
 }
 
 function jumpToDay(ds){
-  switchTabDirect('list');
-  filterDept='all';
-  renderFilters();
-  renderList(ds);
+  calMode=false;
+  document.getElementById('cal-view').style.display='none';
+  document.getElementById('list-section').style.display='block';
+  document.getElementById('cal-toggle').innerHTML='<i class="ti ti-calendar"></i> ดูปฏิทิน';
+  filterDept='all';renderFilters();renderList(ds);
+}
+
+function toggleCalView(){
+  calMode=!calMode;
+  document.getElementById('cal-view').style.display=calMode?'block':'none';
+  document.getElementById('list-section').style.display=calMode?'none':'block';
+  document.getElementById('cal-toggle').innerHTML=calMode?'<i class="ti ti-list"></i> ดูรายการ':'<i class="ti ti-calendar"></i> ดูปฏิทิน';
+  if(!calMode)renderList();
 }
 
 function renderFilters(){
   const depts=[...new Set(events.map(e=>e.dept))];
   document.getElementById('filter-bar').innerHTML=`
-    <button class="filter-chip${filterDept==='all'?' active':''}" onclick="setFilter('all',this)">ทั้งหมด</button>
-    ${depts.map(d=>`<button class="filter-chip${filterDept===d?' active':''}" onclick="setFilter('${escHtml(d)}',this)">${escHtml(d)}</button>`).join('')}
+    <button class="fchip${filterDept==='all'?' active':''}" onclick="setFilter('all',this)">ทั้งหมด</button>
+    ${depts.map(d=>`<button class="fchip${filterDept===d?' active':''}" onclick="setFilter(${JSON.stringify(d)},this)">${esc(d)}</button>`).join('')}
   `;
+  // Update dept datalist
+  const dl=document.getElementById('dept-list');
+  if(dl) dl.innerHTML=depts.map(d=>`<option value="${esc(d)}">`).join('');
 }
 
 function setFilter(dept,btn){
   filterDept=dept;
-  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('#filter-bar .fchip').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   renderList();
 }
 
 function renderList(focusDate=null){
-  const lv=document.getElementById('list-view');
+  const lv=document.getElementById('ev-list');
   let evts=[...events].sort((a,b)=>a.date.localeCompare(b.date));
   if(filterDept!=='all')evts=evts.filter(e=>e.dept===filterDept);
   if(focusDate)evts=evts.filter(e=>e.date===focusDate||(e.endDate&&focusDate>=e.date&&focusDate<=e.endDate));
-  if(!evts.length){
-    lv.innerHTML=`<div class="empty"><i class="ti ti-calendar-off" style="font-size:36px;display:block;margin-bottom:10px;color:#ccc"></i>ยังไม่มีกิจกรรม</div>`;
-    return;
-  }
+  if(!evts.length){lv.innerHTML=`<div class="empty-state"><i class="ti ti-calendar-off" style="font-size:36px;display:block;margin-bottom:10px;color:#ddd"></i>ยังไม่มีกิจกรรม</div>`;return;}
   lv.innerHTML=evts.map(e=>{
     const d=new Date(e.date);
-    const dayNum=d.getDate();
-    const mon=MONTHS_TH[d.getMonth()].slice(0,3)+' '+(d.getFullYear()+543);
-    let range='';
-    if(e.endDate&&e.endDate!==e.date){
-      const ed=new Date(e.endDate);
-      range=` — ${ed.getDate()} ${MONTHS_TH[ed.getMonth()].slice(0,3)}`;
-    }
-    const driveChip=e.drive?`<a class="file-chip" href="${escHtml(e.drive)}" target="_blank" rel="noopener"><i class="ti ti-file" style="font-size:12px"></i> เปิดไฟล์ Google Drive</a>`:'';
-    return `<div class="event-card">
-      <div class="event-left">
-        <div class="event-day">${dayNum}</div>
-        <div class="event-month">${mon}${range}</div>
-      </div>
-      <div class="event-body">
-        <div class="event-title">${escHtml(e.name)}</div>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px">
-          <span class="dept-badge" style="background:${e.color}22;color:${e.color}">${escHtml(e.dept)}</span>
-        </div>
-        ${e.desc?`<div class="event-desc">${escHtml(e.desc)}</div>`:''}
-        ${driveChip}
+    const range=e.endDate&&e.endDate!==e.date?` — ${new Date(e.endDate).getDate()} ${MONTHS_TH[new Date(e.endDate).getMonth()].slice(0,3)}`:'';
+    const chip=e.drive?`<a class="file-chip" href="${esc(e.drive)}" target="_blank" rel="noopener"><i class="ti ti-file" style="font-size:12px"></i> เปิดไฟล์ Google Drive</a>`:'';
+    return `<div class="ev-card">
+      <div class="ev-left"><div class="ev-day">${d.getDate()}</div><div class="ev-month-lbl">${MONTHS_TH[d.getMonth()].slice(0,3)} ${d.getFullYear()+543}${range}</div></div>
+      <div class="ev-body">
+        <div class="ev-title">${esc(e.name)}</div>
+        <div style="margin-top:4px"><span class="dept-badge" style="background:${e.color}22;color:${e.color}">${esc(e.dept)}</span></div>
+        ${e.desc?`<div class="ev-desc">${esc(e.desc)}</div>`:''}
+        ${chip}
       </div>
       <div class="btn-actions">
-        <button class="btn-icon edit" onclick="openModal('${e.id}')" title="แก้ไข"><i class="ti ti-edit"></i></button>
-        <button class="btn-icon del" onclick="confirmDelete('${e.id}')" title="ลบ"><i class="ti ti-trash"></i></button>
+        <button class="btn-ic edit" onclick="openEventModal('${e.id}')" title="แก้ไข"><i class="ti ti-edit"></i></button>
+        <button class="btn-ic del" onclick="confirmDelete('${e.id}','event')" title="ลบ"><i class="ti ti-trash"></i></button>
       </div>
     </div>`;
   }).join('');
 }
 
-function confirmDelete(id){
-  pendingDeleteId=id;
-  document.getElementById('confirm-wrap').style.display='block';
-  document.getElementById('confirm-del-btn').onclick=()=>{
-    events=events.filter(e=>e.id!==pendingDeleteId);
-    save();renderAll();closeConfirm();
-  };
-}
-function closeConfirm(){document.getElementById('confirm-wrap').style.display='none';pendingDeleteId=null}
+function changeMonth(d){curMonth+=d;if(curMonth>11){curMonth=0;curYear++}if(curMonth<0){curMonth=11;curYear--}renderCalendar();}
 
-function changeMonth(d){
-  curMonth+=d;
-  if(curMonth>11){curMonth=0;curYear++}
-  if(curMonth<0){curMonth=11;curYear--}
-  renderCalendar();
-}
-
-function switchTab(name,btn){
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('view-'+name).classList.add('active');
-  if(name==='list')renderList();
-}
-
-function switchTabDirect(name){
-  document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');if(t.textContent.includes(name==='list'?'รายการ':'ปฏิทิน'))t.classList.add('active')});
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+name).classList.add('active');
-}
-
-function openModal(id=null){
+function openEventModal(id=null){
   editId=id;
-  document.getElementById('modal-wrap').style.display='block';
-  document.getElementById('modal-title').textContent=id?'แก้ไขกิจกรรม':'เพิ่มกิจกรรมใหม่';
+  document.getElementById('event-modal-wrap').style.display='block';
+  document.getElementById('ev-modal-title').textContent=id?'แก้ไขกิจกรรม':'เพิ่มกิจกรรมใหม่';
   if(id){
     const e=events.find(ev=>ev.id===id);
     document.getElementById('f-name').value=e.name;
@@ -389,58 +749,275 @@ function openModal(id=null){
     document.getElementById('f-end').value=e.endDate||'';
     document.getElementById('f-desc').value=e.desc||'';
     document.getElementById('f-drive').value=e.drive||'';
-    selectedColor=e.color;
+    selColor=e.color;
   } else {
     ['f-name','f-dept','f-desc','f-drive'].forEach(fid=>document.getElementById(fid).value='');
-    document.getElementById('f-date').value='';
-    document.getElementById('f-end').value='';
-    selectedColor=DEPT_COLORS[0];
+    document.getElementById('f-date').value='';document.getElementById('f-end').value='';
+    selColor=COLORS[0];
   }
-  renderColorPicker();
-  updateDrivePreview();
+  renderColorPicker();updateDrivePreview();
 }
+function closeEventModal(){document.getElementById('event-modal-wrap').style.display='none';editId=null;}
 
 function renderColorPicker(){
-  document.getElementById('dept-colors').innerHTML=DEPT_COLORS.map(c=>`<div class="dept-swatch${c===selectedColor?' selected':''}" style="background:${c}" onclick="pickColor('${c}')" title="เลือกสี"></div>`).join('');
+  document.getElementById('color-swatches').innerHTML=COLORS.map(c=>`<div class="cswatch${c===selColor?' selected':''}" style="background:${c}" onclick="pickColor('${c}')"></div>`).join('');
 }
-
-function pickColor(c){selectedColor=c;renderColorPicker()}
+function pickColor(c){selColor=c;renderColorPicker();}
 
 function updateDrivePreview(){
   const url=document.getElementById('f-drive').value.trim();
   const prev=document.getElementById('f-preview');
-  if(url){
-    prev.style.display='flex';
-    const isPdf=url.toLowerCase().includes('pdf')||url.includes('/d/');
-    prev.innerHTML=`<i class="ti ti-${isPdf?'file-type-pdf':'photo'}" style="font-size:18px;color:${isPdf?'#A32D2D':'#185FA5'}"></i><span>${isPdf?'PDF Document':'รูปภาพ'} — ${url.slice(0,50)}...</span>`;
-  } else {prev.style.display='none'}
+  if(url){prev.style.display='flex';const isPdf=url.toLowerCase().includes('pdf')||url.includes('/d/');prev.innerHTML=`<i class="ti ti-${isPdf?'file-type-pdf':'photo'}" style="font-size:18px;color:${isPdf?'#A32D2D':'#185FA5'}"></i><span>${isPdf?'PDF':'รูปภาพ'} — ${url.slice(0,50)}</span>`;}
+  else{prev.style.display='none';}
 }
-
-function closeModal(){document.getElementById('modal-wrap').style.display='none';editId=null}
-function bgClose(e){if(e.target===e.currentTarget)closeModal()}
 
 function saveEvent(){
   const name=document.getElementById('f-name').value.trim();
   const dept=document.getElementById('f-dept').value.trim();
   const date=document.getElementById('f-date').value;
-  if(!name||!dept||!date){alert('กรุณากรอกชื่อกิจกรรม ฝ่าย และวันที่');return}
-  const ev={
-    id:editId||uid(),name,dept,date,
-    endDate:document.getElementById('f-end').value,
-    desc:document.getElementById('f-desc').value.trim(),
-    drive:document.getElementById('f-drive').value.trim(),
-    color:selectedColor
+  if(!name||!dept||!date){showToast('กรุณากรอกชื่อกิจกรรม ฝ่าย และวันที่','error');return;}
+  const endDate=document.getElementById('f-end').value;
+  if(endDate&&endDate<date){showToast('วันที่สิ้นสุดต้องไม่น้อยกว่าวันที่เริ่ม','error');return;}
+  const ev={id:editId||uid(),name,dept,date,endDate,desc:document.getElementById('f-desc').value.trim(),drive:document.getElementById('f-drive').value.trim(),color:selColor};
+  if(editId)events=events.map(e=>e.id===editId?ev:e); else events.push(ev);
+  saveEvs();closeEventModal();renderAll();
+  showToast(editId?'แก้ไขกิจกรรมแล้ว ✓':'เพิ่มกิจกรรมแล้ว ✓');
+}
+
+function confirmDelete(id,type='event'){
+  pendingDelId={id,type};
+  document.getElementById('confirm-msg').textContent=type==='teacher'?'ยืนยันการลบข้อมูลครูคนนี้?':'ยืนยันการลบกิจกรรมนี้?';
+  document.getElementById('confirm-wrap').style.display='block';
+  document.getElementById('confirm-del-btn').onclick=()=>{
+    if(type==='event'){
+      events=events.filter(e=>e.id!==id);
+      saveEvs();renderAll();
+      showToast('ลบกิจกรรมแล้ว');
+    } else {
+      deleteTeacher(id);
+    }
+    closeConfirm();
   };
-  if(editId){events=events.map(e=>e.id===editId?ev:e)}
-  else{events.push(ev)}
-  save();closeModal();renderAll();
+}
+function closeConfirm(){document.getElementById('confirm-wrap').style.display='none';pendingDelId=null;}
+
+function renderAll(){renderStats();renderCalendar();if(!calMode)renderList();renderFilters();}
+
+// ==================== TEACHERS ====================
+function renderTeacherStats(){
+  const total = TEACHERS_THAI_DATA.length + TEACHERS_RETIRED_DATA.length + TEACHERS_FOREIGN_DATA.length;
+  document.getElementById('teacher-stats-bar').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${total}</div><div class="stat-label">บุคลากรทั้งหมด</div></div>
+    <div class="stat-card"><div class="stat-num">${TEACHERS_THAI_DATA.length}</div><div class="stat-label">ครูไทย</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#BA7517">${TEACHERS_RETIRED_DATA.length}</div><div class="stat-label">ครูเกษียณ</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:#185FA5">${TEACHERS_FOREIGN_DATA.length}</div><div class="stat-label">ครูต่างชาติ</div></div>
+  `;
 }
 
-function escHtml(str){
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+function setTeacherType(type,btn){
+  teacherType=type;
+  document.querySelectorAll('.tt-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderTeachers();
 }
 
-init();
+function getInitials(name){
+  if(!name)return '?';
+  const parts=name.trim().split(' ');
+  if(parts.length>=2)return parts[parts.length-2].charAt(0)+(parts[parts.length-1]?parts[parts.length-1].charAt(0):'');
+  return name.charAt(0).toUpperCase();
+}
+
+function renderTeachers(){
+  const q=document.getElementById('teacher-search').value.trim().toLowerCase();
+  let pool=[];
+  if(teacherType==='all'||teacherType==='thai')pool.push(...TEACHERS_THAI_DATA.map(t=>({...t,type:'thai'})));
+  if(teacherType==='all'||teacherType==='retired')pool.push(...TEACHERS_RETIRED_DATA.map(t=>({...t,type:'retired'})));
+  if(teacherType==='all'||teacherType==='foreign')pool.push(...TEACHERS_FOREIGN_DATA.map(t=>({...t,type:'foreign'})));
+  if(q){
+    pool=pool.filter(t=>{
+      const fullName=(t.name+' '+t.surname+' '+t.code+' '+t.subject+' '+t.major+' '+t.role+' '+(t.nationality||'')).toLowerCase();
+      return fullName.includes(q);
+    });
+  }
+  document.getElementById('teacher-count').textContent=`พบ ${pool.length} คน`;
+  window._teacherPool=pool;
+  if(!pool.length){document.getElementById('teacher-grid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><i class="ti ti-user-off" style="font-size:36px;display:block;margin-bottom:10px;color:#ddd"></i>ไม่พบข้อมูลครู</div>`;return;}
+  document.getElementById('teacher-grid').innerHTML=pool.map((t,i)=>{
+    const avatarClass=t.type==='retired'?'t-avatar retired':t.type==='foreign'?'t-avatar foreign':'t-avatar';
+    const initials=t.type==='foreign'?t.name.split(' ').filter(w=>w).map(w=>w[0]).join('').slice(0,2):getInitials(t.name+' '+t.surname);
+    const badge=t.type==='retired'?`<span class="t-badge retired">ครูเกษียณ ${t.retiredYear||''}</span>`:t.type==='foreign'?`<span class="t-badge foreign">${t.nationality||'Foreign'}</span>`:'';
+    const subjectInfo=t.subject?`<div class="t-info-row"><i class="ti ti-book"></i><span>${esc(t.subject)}${t.level?' ('+esc(t.level)+')':''}</span></div>`:'';
+    const roleInfo=t.role?`<div class="t-info-row"><i class="ti ti-building"></i><span>${esc(t.role)}</span></div>`:'';
+    const phoneInfo=t.phone&&t.phone!=='-'?`<div class="t-info-row"><i class="ti ti-phone"></i><span>${esc(t.phone)}</span></div>`:'';
+    return `<div class="t-card" data-idx="${i}">
+      <div class="t-card-header">
+        <div class="${avatarClass}">${initials}</div>
+        <div>
+          <div class="t-name">${esc(t.name)}${t.surname?' '+esc(t.surname):''}</div>
+          <div class="t-code">รหัส ${t.code} • อายุ ${t.age} ปี</div>
+          ${badge}
+        </div>
+      </div>
+      <div class="t-info">
+        ${subjectInfo}${roleInfo}${t.major?`<div class="t-info-row"><i class="ti ti-school"></i><span>${esc(t.major)}</span></div>`:''}
+        ${phoneInfo}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+document.getElementById('teacher-grid').addEventListener('click',function(e){
+  const card=e.target.closest('.t-card');
+  if(!card)return;
+  const idx=parseInt(card.dataset.idx);
+  if(!isNaN(idx))showTeacherDetail(idx);
+});
+
+function showTeacherDetail(idx){
+  const pool=window._teacherPool||[];
+  const t=pool[idx];
+  if(!t)return;
+  const avatarClass=t.type==='retired'?'tmodal-avatar retired':t.type==='foreign'?'tmodal-avatar foreign':'tmodal-avatar';
+  const initials=t.type==='foreign'?t.name.split(' ').filter(w=>w).map(w=>w[0]).join('').slice(0,2):getInitials(t.name+' '+t.surname);
+  const badge=t.type==='retired'?`<span class="t-badge retired" style="font-size:12px;padding:4px 12px">ครูเกษียณ ${t.retiredYear||''}</span>`:t.type==='foreign'?`<span class="t-badge foreign" style="font-size:12px;padding:4px 12px">${t.nationality||'Foreign'}</span>`:'';
+  document.getElementById('tmodal-body').innerHTML=`
+    <div class="${avatarClass}">${initials}</div>
+    <div class="tmodal-name">${esc(t.name)}${t.surname?' '+esc(t.surname):''}</div>
+    <div class="tmodal-code">รหัส ${t.code} ${badge}</div>
+    <div style="height:0.5px;background:#eee;margin:1rem 0"></div>
+    <div class="tmodal-grid">
+      <div class="tmodal-field"><label>วุฒิการศึกษา</label><p>${esc(t.edu)||'-'}</p></div>
+      <div class="tmodal-field"><label>สาขาวิชาเอก</label><p>${esc(t.major)||'-'}</p></div>
+      <div class="tmodal-field"><label>วิชาที่สอน</label><p>${esc(t.subject)||'-'}</p></div>
+      <div class="tmodal-field"><label>ระดับชั้น</label><p>${esc(t.level)||'-'}</p></div>
+      ${t.role?`<div class="tmodal-field full"><label>งาน/หน้าที่</label><p>${esc(t.role)}</p></div>`:''}
+      <div class="tmodal-field"><label>อายุ</label><p>${t.age||'-'} ปี</p></div>
+      <div class="tmodal-field"><label>วันเริ่มทำงาน</label><p>${esc(t.start)||'-'}</p></div>
+      <div class="tmodal-field"><label>เบอร์โทรศัพท์</label><p>${t.phone&&t.phone!=='-'?`<a href="tel:${esc(t.phone)}" style="color:#0F6E56;text-decoration:none">${esc(t.phone)}</a>`:'-'}</p></div>
+      ${t.nationality?`<div class="tmodal-field"><label>สัญชาติ</label><p>${esc(t.nationality)}</p></div>`:''}
+      ${t.retiredYear?`<div class="tmodal-field"><label>ปีที่เกษียณ</label><p>${esc(t.retiredYear)}</p></div>`:''}
+    </div>
+  `;
+  document.getElementById('tmodal-actions').innerHTML=`
+    <button class="fchip" style="display:inline-flex;align-items:center;gap:5px" onclick="openTeacherEditModal('${t.id}','${t.type}')"><i class="ti ti-edit"></i> แก้ไข</button>
+    <button class="fchip" style="display:inline-flex;align-items:center;gap:5px;color:#c0392b;border-color:#c0392b" onclick="closeTeacherModal();confirmDelete('${t.id}','teacher')"><i class="ti ti-trash"></i> ลบ</button>
+  `;
+  document.getElementById('teacher-modal-wrap').style.display='block';
+}
+
+function closeTeacherModal(){document.getElementById('teacher-modal-wrap').style.display='none';}
+
+// ==================== ADD/EDIT TEACHER ====================
+function openTeacherAddModal(){
+  editTeacherId=null;
+  document.getElementById('teacher-modal-title').textContent='เพิ่มข้อมูลครูใหม่';
+  ['tf-name','tf-surname','tf-code','tf-edu','tf-major','tf-subject','tf-level','tf-role','tf-phone','tf-start','tf-nationality','tf-retired'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+  document.getElementById('tf-age').value='';
+  document.getElementById('tf-type').value='thai';
+  toggleTeacherTypeFields('thai');
+  document.getElementById('teacher-edit-modal-wrap').style.display='block';
+}
+
+function openTeacherEditModal(id, type){
+  closeTeacherModal();
+  let t=null;
+  if(type==='thai') t=TEACHERS_THAI_DATA.find(x=>x.id===id);
+  else if(type==='retired') t=TEACHERS_RETIRED_DATA.find(x=>x.id===id);
+  else t=TEACHERS_FOREIGN_DATA.find(x=>x.id===id);
+  if(!t)return;
+  editTeacherId={id,type};
+  document.getElementById('teacher-modal-title').textContent='แก้ไขข้อมูลครู';
+  document.getElementById('tf-name').value=t.name||'';
+  document.getElementById('tf-surname').value=t.surname||'';
+  document.getElementById('tf-code').value=t.code||'';
+  document.getElementById('tf-edu').value=t.edu||'';
+  document.getElementById('tf-major').value=t.major||'';
+  document.getElementById('tf-subject').value=t.subject||'';
+  document.getElementById('tf-level').value=t.level||'';
+  document.getElementById('tf-role').value=t.role||'';
+  document.getElementById('tf-age').value=t.age||'';
+  document.getElementById('tf-phone').value=t.phone||'';
+  document.getElementById('tf-start').value=t.start||'';
+  document.getElementById('tf-nationality').value=t.nationality||'';
+  document.getElementById('tf-retired').value=t.retiredYear||'';
+  document.getElementById('tf-type').value=type;
+  toggleTeacherTypeFields(type);
+  document.getElementById('teacher-edit-modal-wrap').style.display='block';
+}
+
+function toggleTeacherTypeFields(type){
+  document.getElementById('tf-nationality-wrap').style.display=type==='foreign'?'block':'none';
+  document.getElementById('tf-retired-wrap').style.display=type==='retired'?'block':'none';
+}
+
+document.getElementById('tf-type').addEventListener('change',function(){toggleTeacherTypeFields(this.value);});
+
+function closeTeacherEditModal(){document.getElementById('teacher-edit-modal-wrap').style.display='none';editTeacherId=null;}
+
+function saveTeacher(){
+  const name=document.getElementById('tf-name').value.trim();
+  const code=document.getElementById('tf-code').value.trim();
+  const type=document.getElementById('tf-type').value;
+  if(!name||!code){showToast('กรุณากรอกชื่อและรหัสครู','error');return;}
+  const obj={
+    id: editTeacherId?editTeacherId.id : uid(),
+    code, name,
+    surname: document.getElementById('tf-surname').value.trim(),
+    age: parseInt(document.getElementById('tf-age').value)||0,
+    edu: document.getElementById('tf-edu').value.trim(),
+    major: document.getElementById('tf-major').value.trim(),
+    subject: document.getElementById('tf-subject').value.trim(),
+    level: document.getElementById('tf-level').value.trim(),
+    role: document.getElementById('tf-role').value.trim(),
+    phone: document.getElementById('tf-phone').value.trim(),
+    start: document.getElementById('tf-start').value.trim(),
+    nationality: document.getElementById('tf-nationality').value.trim(),
+    retiredYear: document.getElementById('tf-retired').value.trim(),
+  };
+  if(editTeacherId){
+    // Remove from old type
+    TEACHERS_THAI_DATA = TEACHERS_THAI_DATA.filter(t=>t.id!==editTeacherId.id);
+    TEACHERS_RETIRED_DATA = TEACHERS_RETIRED_DATA.filter(t=>t.id!==editTeacherId.id);
+    TEACHERS_FOREIGN_DATA = TEACHERS_FOREIGN_DATA.filter(t=>t.id!==editTeacherId.id);
+  }
+  if(type==='thai') TEACHERS_THAI_DATA.push(obj);
+  else if(type==='retired') TEACHERS_RETIRED_DATA.push(obj);
+  else TEACHERS_FOREIGN_DATA.push(obj);
+  saveTeachers();
+  closeTeacherEditModal();
+  renderTeacherStats();
+  renderTeachers();
+  showToast(editTeacherId?'แก้ไขข้อมูลครูแล้ว ✓':'เพิ่มข้อมูลครูแล้ว ✓');
+}
+
+function deleteTeacher(id){
+  TEACHERS_THAI_DATA = TEACHERS_THAI_DATA.filter(t=>t.id!==id);
+  TEACHERS_RETIRED_DATA = TEACHERS_RETIRED_DATA.filter(t=>t.id!==id);
+  TEACHERS_FOREIGN_DATA = TEACHERS_FOREIGN_DATA.filter(t=>t.id!==id);
+  saveTeachers();
+  renderTeacherStats();
+  renderTeachers();
+  showToast('ลบข้อมูลครูแล้ว');
+}
+
+// ==================== PAGE SWITCHING ====================
+function switchPage(name,btn){
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('btn-add-event').style.display=name==='events'?'flex':'none';
+  document.getElementById('btn-add-teacher').style.display=name==='teachers'?'flex':'none';
+  if(name==='teachers'){renderTeacherStats();renderTeachers();}
+}
+
+// ==================== INIT ====================
+renderAll();
+renderTeacherStats();
 </script>
 </body>
 </html>
