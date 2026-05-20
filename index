@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บอร์ดประชาสัมพันธ์กิจกรรม</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:#F4F6F4;color:#1a1a1a;min-height:100vh}
+
+/* Top bar */
+.topbar{background:#0F6E56;color:#fff;padding:0 2rem;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.topbar-title{font-size:17px;font-weight:600;letter-spacing:0.01em}
+.topbar-sub{font-size:12px;opacity:0.8;margin-top:1px}
+.btn-add{display:flex;align-items:center;gap:6px;padding:8px 18px;background:#fff;color:#0F6E56;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Sarabun',sans-serif;transition:all 0.15s}
+.btn-add:hover{background:#E1F5EE}
+
+/* Layout */
+.container{max-width:1100px;margin:0 auto;padding:1.5rem 1.5rem}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:1.5rem}
+.stat-card{background:#fff;border-radius:10px;padding:14px 16px;text-align:center;border:0.5px solid #e0e0e0}
+.stat-num{font-size:26px;font-weight:600;color:#0F6E56}
+.stat-label{font-size:12px;color:#666;margin-top:2px}
+
+/* Tabs */
+.tabs{display:flex;gap:0;margin-bottom:1.5rem;border-bottom:1.5px solid #e0e0e0}
+.tab{padding:10px 20px;font-size:14px;cursor:pointer;color:#666;border-bottom:2.5px solid transparent;background:none;border-top:none;border-left:none;border-right:none;font-family:'Sarabun',sans-serif;font-weight:500;display:flex;align-items:center;gap:6px;transition:all 0.15s;margin-bottom:-1.5px}
+.tab.active{color:#0F6E56;border-bottom-color:#0F6E56}
+.tab:hover{color:#1D9E75}
+.view{display:none}
+.view.active{display:block}
+
+/* Calendar */
+.month-nav{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.month-nav button{background:#fff;border:0.5px solid #ccc;border-radius:8px;padding:7px 12px;cursor:pointer;color:#333;font-size:14px;font-family:'Sarabun',sans-serif;transition:background 0.1s}
+.month-nav button:hover{background:#f0f0f0}
+.month-label{font-size:17px;font-weight:600;color:#1a1a1a}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal-header-cell{text-align:center;font-size:12px;font-weight:600;color:#666;padding:6px 0}
+.cal-day{min-height:76px;border-radius:8px;border:0.5px solid #e5e5e5;padding:7px;background:#fff;cursor:pointer;transition:border-color 0.15s}
+.cal-day:hover{border-color:#0F6E56;background:#FAFFFE}
+.cal-day.other-month{background:#f8f8f8;opacity:0.55}
+.cal-day.today{border-color:#0F6E56;border-width:1.5px}
+.cal-day .day-num{font-size:12px;font-weight:600;color:#333;margin-bottom:4px}
+.cal-day.today .day-num{color:#0F6E56}
+.event-dot{display:flex;align-items:center;gap:4px;margin-bottom:2px}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.event-dot span{font-size:10px;color:#555;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+
+/* List */
+.filter-bar{display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;align-items:center}
+.filter-chip{font-size:12px;padding:5px 14px;border-radius:99px;border:0.5px solid #ccc;background:#fff;cursor:pointer;color:#555;font-family:'Sarabun',sans-serif;font-weight:500;transition:all 0.15s}
+.filter-chip.active{background:#0F6E56;color:#fff;border-color:#0F6E56}
+.filter-chip:hover:not(.active){background:#f0f0f0}
+.list-view{display:flex;flex-direction:column;gap:10px}
+.event-card{background:#fff;border:0.5px solid #e0e0e0;border-radius:12px;padding:14px 16px;display:flex;align-items:flex-start;gap:14px;transition:box-shadow 0.15s}
+.event-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+.event-left{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:52px;background:#E1F5EE;border-radius:8px;padding:10px 6px;text-align:center}
+.event-day{font-size:22px;font-weight:700;color:#0F6E56;line-height:1}
+.event-month{font-size:10px;color:#1D9E75;margin-top:3px;font-weight:500}
+.event-body{flex:1;min-width:0}
+.event-title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:5px}
+.dept-badge{font-size:11px;padding:3px 10px;border-radius:8px;font-weight:500}
+.event-desc{font-size:13px;color:#666;margin-top:5px;line-height:1.5}
+.file-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#185FA5;background:#E6F1FB;padding:4px 10px;border-radius:8px;text-decoration:none;margin-top:6px;font-weight:500;transition:background 0.1s}
+.file-chip:hover{background:#cde2f7}
+.btn-actions{display:flex;gap:4px;flex-shrink:0}
+.btn-icon{background:none;border:none;cursor:pointer;padding:7px;border-radius:8px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;color:#999}
+.btn-icon:hover.del{color:#c0392b;background:#fdecea}
+.btn-icon:hover.edit{color:#185FA5;background:#E6F1FB}
+.empty{text-align:center;padding:4rem 1rem;color:#999;font-size:14px}
+
+/* Modal */
+.modal-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}
+.modal{background:#fff;border-radius:14px;width:100%;max-width:500px;padding:1.75rem;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.modal h3{font-size:17px;font-weight:600;margin-bottom:1.25rem;color:#1a1a1a}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:13px;color:#555;margin-bottom:5px;font-weight:500}
+.field input,.field select,.field textarea{width:100%;padding:9px 12px;border:0.5px solid #ccc;border-radius:8px;font-family:'Sarabun',sans-serif;font-size:14px;color:#1a1a1a;outline:none;transition:border-color 0.15s;background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#0F6E56;box-shadow:0 0 0 3px rgba(15,110,86,0.1)}
+.field textarea{height:76px;resize:vertical}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gdrive-wrap{display:flex;gap:8px;align-items:center}
+.gdrive-icon{font-size:22px;flex-shrink:0}
+.file-preview-box{display:flex;align-items:center;gap:8px;background:#f5f5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#555;margin-top:6px}
+.dept-colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.dept-swatch{width:24px;height:24px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform 0.1s}
+.dept-swatch.selected{transform:scale(1.3);border-color:#1a1a1a}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:1.25rem}
+.btn-cancel{background:#f0f0f0;border:none;border-radius:8px;padding:9px 18px;font-size:14px;cursor:pointer;color:#333;font-family:'Sarabun',sans-serif;font-weight:500}
+.btn-cancel:hover{background:#e0e0e0}
+.btn-save{padding:9px 24px;background:#0F6E56;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif}
+.btn-save:hover{background:#085041}
+.confirm-bg{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;z-index:200;padding:1rem}
+.confirm-box{background:#fff;border-radius:12px;padding:1.5rem;max-width:340px;width:100%;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
+.confirm-box p{font-size:15px;margin-bottom:1.25rem;color:#333}
+.confirm-actions{display:flex;justify-content:center;gap:10px}
+.btn-confirm-del{padding:9px 22px;background:#c0392b;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sarabun',sans-serif}
+.btn-confirm-del:hover{background:#a93226}
+
+@media(max-width:640px){
+  .container{padding:1rem}
+  .field-row{grid-template-columns:1fr}
+  .topbar{padding:0 1rem}
+  .topbar-title{font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="topbar-title">📢 บอร์ดประชาสัมพันธ์กิจกรรม</div>
+    <div class="topbar-sub">โรงเรียนพระมารดานิจจาบุเจดาระห์</div>
+  </div>
+  <button class="btn-add" onclick="openModal()">
+    <i class="ti ti-plus"></i> เพิ่มกิจกรรม
+  </button>
+</div>
+
+<div class="container">
+
+  <div class="stats" id="stats-bar"></div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('calendar',this)"><i class="ti ti-calendar"></i> ปฏิทิน</button>
+    <button class="tab" onclick="switchTab('list',this)"><i class="ti ti-list"></i> รายการทั้งหมด</button>
+  </div>
+
+  <!-- Calendar View -->
+  <div class="view active" id="view-calendar">
+    <div class="month-nav">
+      <button onclick="changeMonth(-1)"><i class="ti ti-chevron-left"></i></button>
+      <span class="month-label" id="month-label"></span>
+      <button onclick="changeMonth(1)"><i class="ti ti-chevron-right"></i></button>
+    </div>
+    <div class="cal-grid" id="cal-header"></div>
+    <div class="cal-grid" id="cal-grid" style="margin-top:5px"></div>
+  </div>
+
+  <!-- List View -->
+  <div class="view" id="view-list">
+    <div class="filter-bar" id="filter-bar"></div>
+    <div class="list-view" id="list-view"></div>
+  </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div id="modal-wrap" style="display:none">
+  <div class="modal-bg" onclick="bgClose(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3 id="modal-title">เพิ่มกิจกรรมใหม่</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>ชื่อกิจกรรม *</label>
+          <input type="text" id="f-name" placeholder="เช่น ประชุมผู้ปกครอง">
+        </div>
+        <div class="field">
+          <label>ฝ่าย / กลุ่มงาน *</label>
+          <input type="text" id="f-dept" placeholder="เช่น ฝ่ายวิชาการ">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>วันที่เริ่ม *</label>
+          <input type="date" id="f-date">
+        </div>
+        <div class="field">
+          <label>วันที่สิ้นสุด (ถ้ามี)</label>
+          <input type="date" id="f-end">
+        </div>
+      </div>
+      <div class="field">
+        <label>รายละเอียดกิจกรรม</label>
+        <textarea id="f-desc" placeholder="รายละเอียดเพิ่มเติม..."></textarea>
+      </div>
+      <div class="field">
+        <label><i class="ti ti-brand-google-drive" style="vertical-align:-2px"></i> ลิงก์ Google Drive (PDF / รูปภาพ)</label>
+        <div class="gdrive-wrap">
+          <span class="gdrive-icon">📂</span>
+          <input type="url" id="f-drive" placeholder="https://drive.google.com/file/d/..." oninput="updateDrivePreview()">
+        </div>
+        <div class="file-preview-box" id="f-preview" style="display:none"></div>
+      </div>
+      <div class="field">
+        <label>สีประจำฝ่าย</label>
+        <div class="dept-colors" id="dept-colors"></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">ยกเลิก</button>
+        <button class="btn-save" onclick="saveEvent()">บันทึก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirm -->
+<div id="confirm-wrap" style="display:none">
+  <div class="confirm-bg">
+    <div class="confirm-box">
+      <p>ยืนยันการลบกิจกรรมนี้?</p>
+      <div class="confirm-actions">
+        <button class="btn-cancel" onclick="closeConfirm()">ยกเลิก</button>
+        <button class="btn-confirm-del" id="confirm-del-btn">ลบกิจกรรม</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DEPT_COLORS=['#0F6E56','#185FA5','#BA7517','#A32D2D','#993556','#533AB7','#3B6D11'];
+const DAYS_TH=['อา','จ','อ','พ','พฤ','ศ','ส'];
+const MONTHS_TH=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
+
+let events = JSON.parse(localStorage.getItem('pr_events')||'[]');
+let curYear = new Date().getFullYear();
+let curMonth = new Date().getMonth();
+let selectedColor = DEPT_COLORS[0];
+let filterDept = 'all';
+let editId = null;
+let pendingDeleteId = null;
+
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2)}
+function save(){localStorage.setItem('pr_events', JSON.stringify(events))}
+
+function init(){
+  if(events.length===0){
+    events=[
+      {id:uid(),name:'ประชุมผู้ปกครอง ภาคเรียนที่ 1',dept:'ฝ่ายปกครอง',date:'2026-05-26',endDate:'',desc:'ประชุมผู้ปกครองนักเรียนทุกระดับชั้น',color:'#A32D2D',drive:''},
+      {id:uid(),name:'อบรมครูหลักสูตรใหม่',dept:'ฝ่ายวิชาการ',date:'2026-05-28',endDate:'2026-05-29',desc:'อบรมพัฒนาหลักสูตรปีการศึกษา 2569',color:'#185FA5',drive:''},
+      {id:uid(),name:'กีฬาสีนักเรียน',dept:'ฝ่ายกิจกรรม',date:'2026-06-10',endDate:'2026-06-11',desc:'การแข่งขันกีฬาสีประจำปีการศึกษา 2569',color:'#0F6E56',drive:''},
+    ];
+    save();
+  }
+  renderAll();
+}
+
+function renderAll(){
+  renderStats();
+  renderCalendar();
+  renderList();
+  renderFilters();
+}
+
+function renderStats(){
+  const now=new Date();
+  const thisMonth=events.filter(e=>{const d=new Date(e.date);return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()});
+  const depts=[...new Set(events.map(e=>e.dept))];
+  const upcoming=events.filter(e=>new Date(e.date)>=now);
+  document.getElementById('stats-bar').innerHTML=`
+    <div class="stat-card"><div class="stat-num">${events.length}</div><div class="stat-label">กิจกรรมทั้งหมด</div></div>
+    <div class="stat-card"><div class="stat-num">${thisMonth.length}</div><div class="stat-label">เดือนนี้</div></div>
+    <div class="stat-card"><div class="stat-num">${upcoming.length}</div><div class="stat-label">กิจกรรมที่กำลังจะมาถึง</div></div>
+    <div class="stat-card"><div class="stat-num">${depts.length}</div><div class="stat-label">ฝ่ายที่เกี่ยวข้อง</div></div>
+  `;
+}
+
+function renderCalendar(){
+  const hdr=document.getElementById('cal-header');
+  hdr.innerHTML=DAYS_TH.map(d=>`<div class="cal-header-cell">${d}</div>`).join('');
+  document.getElementById('month-label').textContent=`${MONTHS_TH[curMonth]} ${curYear+543}`;
+  const first=new Date(curYear,curMonth,1).getDay();
+  const days=new Date(curYear,curMonth+1,0).getDate();
+  const today=new Date();
+  const grid=document.getElementById('cal-grid');
+  let html='';
+  for(let i=0;i<first;i++){
+    const d=new Date(curYear,curMonth,0-first+i+2);
+    html+=`<div class="cal-day other-month"><div class="day-num">${d.getDate()}</div></div>`;
+  }
+  for(let d=1;d<=days;d++){
+    const isToday=today.getFullYear()===curYear&&today.getMonth()===curMonth&&today.getDate()===d;
+    const ds=`${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const dayEvts=events.filter(e=>e.date===ds||(e.endDate&&ds>=e.date&&ds<=e.endDate));
+    const dots=dayEvts.slice(0,2).map(e=>`<div class="event-dot"><div class="dot" style="background:${e.color}"></div><span>${e.name}</span></div>`).join('');
+    const more=dayEvts.length>2?`<div style="font-size:9px;color:#888">+${dayEvts.length-2} อื่นๆ</div>`:'';
+    html+=`<div class="cal-day${isToday?' today':''}" onclick="jumpToDay('${ds}')"><div class="day-num">${d}</div>${dots}${more}</div>`;
+  }
+  grid.innerHTML=html;
+}
+
+function jumpToDay(ds){
+  switchTabDirect('list');
+  filterDept='all';
+  renderFilters();
+  renderList(ds);
+}
+
+function renderFilters(){
+  const depts=[...new Set(events.map(e=>e.dept))];
+  document.getElementById('filter-bar').innerHTML=`
+    <button class="filter-chip${filterDept==='all'?' active':''}" onclick="setFilter('all',this)">ทั้งหมด</button>
+    ${depts.map(d=>`<button class="filter-chip${filterDept===d?' active':''}" onclick="setFilter('${escHtml(d)}',this)">${escHtml(d)}</button>`).join('')}
+  `;
+}
+
+function setFilter(dept,btn){
+  filterDept=dept;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+function renderList(focusDate=null){
+  const lv=document.getElementById('list-view');
+  let evts=[...events].sort((a,b)=>a.date.localeCompare(b.date));
+  if(filterDept!=='all')evts=evts.filter(e=>e.dept===filterDept);
+  if(focusDate)evts=evts.filter(e=>e.date===focusDate||(e.endDate&&focusDate>=e.date&&focusDate<=e.endDate));
+  if(!evts.length){
+    lv.innerHTML=`<div class="empty"><i class="ti ti-calendar-off" style="font-size:36px;display:block;margin-bottom:10px;color:#ccc"></i>ยังไม่มีกิจกรรม</div>`;
+    return;
+  }
+  lv.innerHTML=evts.map(e=>{
+    const d=new Date(e.date);
+    const dayNum=d.getDate();
+    const mon=MONTHS_TH[d.getMonth()].slice(0,3)+' '+(d.getFullYear()+543);
+    let range='';
+    if(e.endDate&&e.endDate!==e.date){
+      const ed=new Date(e.endDate);
+      range=` — ${ed.getDate()} ${MONTHS_TH[ed.getMonth()].slice(0,3)}`;
+    }
+    const driveChip=e.drive?`<a class="file-chip" href="${escHtml(e.drive)}" target="_blank" rel="noopener"><i class="ti ti-file" style="font-size:12px"></i> เปิดไฟล์ Google Drive</a>`:'';
+    return `<div class="event-card">
+      <div class="event-left">
+        <div class="event-day">${dayNum}</div>
+        <div class="event-month">${mon}${range}</div>
+      </div>
+      <div class="event-body">
+        <div class="event-title">${escHtml(e.name)}</div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <span class="dept-badge" style="background:${e.color}22;color:${e.color}">${escHtml(e.dept)}</span>
+        </div>
+        ${e.desc?`<div class="event-desc">${escHtml(e.desc)}</div>`:''}
+        ${driveChip}
+      </div>
+      <div class="btn-actions">
+        <button class="btn-icon edit" onclick="openModal('${e.id}')" title="แก้ไข"><i class="ti ti-edit"></i></button>
+        <button class="btn-icon del" onclick="confirmDelete('${e.id}')" title="ลบ"><i class="ti ti-trash"></i></button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function confirmDelete(id){
+  pendingDeleteId=id;
+  document.getElementById('confirm-wrap').style.display='block';
+  document.getElementById('confirm-del-btn').onclick=()=>{
+    events=events.filter(e=>e.id!==pendingDeleteId);
+    save();renderAll();closeConfirm();
+  };
+}
+function closeConfirm(){document.getElementById('confirm-wrap').style.display='none';pendingDeleteId=null}
+
+function changeMonth(d){
+  curMonth+=d;
+  if(curMonth>11){curMonth=0;curYear++}
+  if(curMonth<0){curMonth=11;curYear--}
+  renderCalendar();
+}
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('view-'+name).classList.add('active');
+  if(name==='list')renderList();
+}
+
+function switchTabDirect(name){
+  document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');if(t.textContent.includes(name==='list'?'รายการ':'ปฏิทิน'))t.classList.add('active')});
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+name).classList.add('active');
+}
+
+function openModal(id=null){
+  editId=id;
+  document.getElementById('modal-wrap').style.display='block';
+  document.getElementById('modal-title').textContent=id?'แก้ไขกิจกรรม':'เพิ่มกิจกรรมใหม่';
+  if(id){
+    const e=events.find(ev=>ev.id===id);
+    document.getElementById('f-name').value=e.name;
+    document.getElementById('f-dept').value=e.dept;
+    document.getElementById('f-date').value=e.date;
+    document.getElementById('f-end').value=e.endDate||'';
+    document.getElementById('f-desc').value=e.desc||'';
+    document.getElementById('f-drive').value=e.drive||'';
+    selectedColor=e.color;
+  } else {
+    ['f-name','f-dept','f-desc','f-drive'].forEach(fid=>document.getElementById(fid).value='');
+    document.getElementById('f-date').value='';
+    document.getElementById('f-end').value='';
+    selectedColor=DEPT_COLORS[0];
+  }
+  renderColorPicker();
+  updateDrivePreview();
+}
+
+function renderColorPicker(){
+  document.getElementById('dept-colors').innerHTML=DEPT_COLORS.map(c=>`<div class="dept-swatch${c===selectedColor?' selected':''}" style="background:${c}" onclick="pickColor('${c}')" title="เลือกสี"></div>`).join('');
+}
+
+function pickColor(c){selectedColor=c;renderColorPicker()}
+
+function updateDrivePreview(){
+  const url=document.getElementById('f-drive').value.trim();
+  const prev=document.getElementById('f-preview');
+  if(url){
+    prev.style.display='flex';
+    const isPdf=url.toLowerCase().includes('pdf')||url.includes('/d/');
+    prev.innerHTML=`<i class="ti ti-${isPdf?'file-type-pdf':'photo'}" style="font-size:18px;color:${isPdf?'#A32D2D':'#185FA5'}"></i><span>${isPdf?'PDF Document':'รูปภาพ'} — ${url.slice(0,50)}...</span>`;
+  } else {prev.style.display='none'}
+}
+
+function closeModal(){document.getElementById('modal-wrap').style.display='none';editId=null}
+function bgClose(e){if(e.target===e.currentTarget)closeModal()}
+
+function saveEvent(){
+  const name=document.getElementById('f-name').value.trim();
+  const dept=document.getElementById('f-dept').value.trim();
+  const date=document.getElementById('f-date').value;
+  if(!name||!dept||!date){alert('กรุณากรอกชื่อกิจกรรม ฝ่าย และวันที่');return}
+  const ev={
+    id:editId||uid(),name,dept,date,
+    endDate:document.getElementById('f-end').value,
+    desc:document.getElementById('f-desc').value.trim(),
+    drive:document.getElementById('f-drive').value.trim(),
+    color:selectedColor
+  };
+  if(editId){events=events.map(e=>e.id===editId?ev:e)}
+  else{events.push(ev)}
+  save();closeModal();renderAll();
+}
+
+function escHtml(str){
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+init();
+</script>
+</body>
+</html>
